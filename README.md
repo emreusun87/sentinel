@@ -1,4 +1,6 @@
 # SENTINEL — Kısıtlı Donanımlarda Öz-Yinelemeli ve Simbiyotik AGI Bilişsel Mimarisi
+### **S**elf-**E**volving **N**etworked **T**hought & **IN**ference **E**ngine for **L**ocal AGI
+*(Yerel Genel Yapay Zeka için Öz-Evrimleşen Ağsal Düşünce ve Çıkarım Motoru)*
 
 ![Architecture](https://img.shields.io/badge/Architecture-Dual--Loop_RSI_%2B_CoALA-0284c7?style=flat-square)
 ![Target Hardware](https://img.shields.io/badge/Hardware-x86_CPU_%7C_16GB_RAM_(No_GPU)-0f766e?style=flat-square)
@@ -6,9 +8,10 @@
 ![Literature](https://img.shields.io/badge/Research_Archive-19_PDFs_%2B_20_Notes-7e22ce?style=flat-square)
 ![Docs Portal](https://img.shields.io/badge/Interactive_Spec-Redoc_3--Pane_Portal-ea580c?style=flat-square)
 
-> **Canlı İnteraktif Portal (GitHub Pages):** **[https://emreusun87.github.io/sentinel/docs/](https://emreusun87.github.io/sentinel/docs/)**
+> - **Canlı İnteraktif Portal (GitHub Pages):** **[https://emreusun87.github.io/sentinel/docs/](https://emreusun87.github.io/sentinel/docs/)**
+> - **Tam Ekran İnteraktif Mimari Diyagram:** **[https://emreusun87.github.io/sentinel/docs/diagram.html](https://emreusun87.github.io/sentinel/docs/diagram.html)**
 
-**SENTINEL**, harici GPU kümelerine ve bulut API'lerine bağımlı kalmadan standart **x86 CPU ve 16 GB RAM** üzerinde çalışmak üzere tasarlanmış; **kuantize küçük dil modellerini (2B–7B SLM)** içsel merak motoru, açık kaynak araç keşfi (*Tool Foraging*), deterministik sandbox doğrulaması ve **üst-bilişsel öz-derleme (2. Derece RSI)** ile birleştiren yerel ve simbiyotik bir AGI bilişsel mimari spesifikasyonudur.
+**SENTINEL** (*Self-Evolving Networked Thought & INference Engine for Local AGI*), harici GPU kümelerine ve bulut API'lerine bağımlı kalmadan standart **x86 CPU ve 16 GB RAM** üzerinde çalışmak üzere tasarlanmış; **kuantize küçük dil modellerini (2B–7B SLM)** içsel merak motoru, açık kaynak araç keşfi (*Tool Foraging*), deterministik sandbox doğrulaması ve **üst-bilişsel öz-derleme (2. Derece RSI)** ile birleştiren yerel ve simbiyotik bir AGI bilişsel mimari spesifikasyonudur.
 
 ---
 

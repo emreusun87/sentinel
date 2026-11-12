@@ -3,26 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SENTINEL — Bilişsel AGI Mimarisi & Literatür Spesifikasyonu</title>
+  <title>SENTINEL — Bilişsel AGI Mimarisi &amp; Literatür Spesifikasyonu</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- KaTeX (Mathematical Equations) -->
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-
-  <!-- Highlight.js (Python Syntax Highlighting) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css" />
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
-
-  <!-- Mermaid v10 (Interactive Cognitive Flowchart) -->
-  <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
-
-  <!-- Portal Styles -->
   <link rel="stylesheet" href="assets/portal.css" />
 </head>
 <body>
@@ -39,6 +29,9 @@
             <span>SENTINEL // SPEC</span>
           </div>
           <button id="btn-theme-toggle" class="theme-btn" title="Tema Değiştir">☀️ Açık</button>
+        </div>
+        <div class="brand-acronym">
+          Self-Evolving Networked Thought &amp; INference Engine for Local AGI
         </div>
         <div class="brand-sub">
           Kısıtlı Donanımda (CPU / 16GB) Çift Katmanlı RSI &amp; Simbiyotik AGI Mimarisi
@@ -72,7 +65,18 @@
           <span class="hero-badge">1. &amp; 2. Derece RSI</span>
           <span class="hero-badge">Sovereign &amp; Symbiotic AI</span>
         </div>
+
         <h1 class="hero-title">SENTINEL: Kısıtlı Donanımlarda Öz-Yinelemeli ve Simbiyotik AGI Bilişsel Mimarisi</h1>
+
+        <div class="acronym-banner">
+          <div class="acronym-en">
+            <strong>S</strong>elf-<strong>E</strong>volving <strong>N</strong>etworked <strong>T</strong>hought &amp; <strong>IN</strong>ference <strong>E</strong>ngine for <strong>L</strong>ocal AGI
+          </div>
+          <div class="acronym-tr">
+            Yerel Genel Yapay Zeka için Öz-Evrimleşen Ağsal Düşünce ve Çıkarım Motoru
+          </div>
+        </div>
+
         <p class="hero-subtitle">
           Kuantize küçük dil modellerini (2B–7B SLM) statik bir sohbet botu olmaktan çıkarıp; içsel merak motoru, açık kaynak araç keşfi, deterministik sandbox ve çalışma zamanında üst-bilişsel öz-derleme ile ucu açık (open-ended) bir bilişsel ortağa dönüştüren Ar-Ge spesifikasyonu ve literatür inceleme portalı.
         </p>
@@ -115,23 +119,27 @@
         <div class="section-eyebrow">02 // Bilişsel Akış ve Çift Katmanlı RSI Topolojisi</div>
         <h2 class="section-h2">İnteraktif SENTINEL Bilişsel Karar ve Öz-Derleme Döngüsü</h2>
         <p style="font-size:0.88rem;color:var(--center-muted);margin-bottom:0.75rem;">
-          Diyagram üzerindeki herhangi bir bilişsel düğüme (<strong>Node 0 – Node 7</strong>) tıkladığınızda ilgili mimari spesifikasyona odaklanır ve sağdaki Redoc kod paneline o düğümün Python modülü ile akademik atıflarını yükler.
+          Diyagramı fareyle sürükleyerek kaydırabilir, yakınlaştırabilir, <strong>Tam Ekran</strong> moduna alabilir veya <strong>Yeni Pencerede</strong> tam boy açabilirsiniz. Herhangi bir düğüme (<strong>Node 0 – Node 7</strong>) tıkladığınızda ilgili mimari spesifikasyona ve sağdaki Python modülüne odaklanır.
         </p>
 
-        <div class="mermaid-card">
+        <div class="mermaid-card" id="main-mermaid-card">
           <div class="mermaid-toolbar">
             <div class="mermaid-hint">
-              <span>🖱️ Düğümlere tıklayarak Python koduna ve makale atıflarına geçiş yapabilirsiniz</span>
+              <span>🖱️ Sürükle-Kaydır • Düğümlere tıklayarak Python koduna geçiş yapın</span>
             </div>
             <div class="mermaid-actions">
               <button id="btn-zoom-out" class="m-btn" title="Uzaklaştır">−</button>
-              <button id="btn-zoom-reset" class="m-btn" title="Sıfırla">100%</button>
+              <button id="btn-zoom-reset" class="m-btn" title="100% Ölçek">100%</button>
               <button id="btn-zoom-in" class="m-btn" title="Yakınlaştır">+</button>
-              <button id="btn-copy-mermaid-top" class="m-btn">Mermaid Kopyala</button>
+              <button id="btn-zoom-fit" class="m-btn" title="Genişliğe Sığdır">Sığdır</button>
+              <button id="btn-fullscreen-mermaid" class="m-btn">⛶ Tam Ekran</button>
+              <a href="diagram.html" target="_blank" rel="noopener" class="m-btn m-btn-primary">↗ Yeni Pencerede Aç</a>
             </div>
           </div>
-          <div class="mermaid-viewport">
-            <div id="mermaid-render-target">Yükleniyor...</div>
+          <div class="mermaid-viewport" id="main-mermaid-viewport">
+            <div class="mermaid-stage">
+              <div id="mermaid-render-target">Yükleniyor...</div>
+            </div>
           </div>
         </div>
       </section>
@@ -166,7 +174,7 @@
     </main>
 
     <!-- ====================================================================
-         3. SAĞ PANEL: REDOC SENKRONİZE KOYU KOD & ATIF PANELİ
+         3. SAĞ PANEL: REDOC SENKRONİZE KOYU KOD, ATIF & GÖRSEL ŞEMA PANELİ
          ==================================================================== -->
     <aside class="right-pane">
       <div class="right-top-bar">
@@ -177,7 +185,7 @@
       <div class="right-tabs">
         <button class="r-tab active" data-tab="code">🐍 Python Kodu</button>
         <button class="r-tab" data-tab="citations">📚 Atıflar &amp; PDF <span id="tab-cite-count"></span></button>
-        <button class="r-tab" data-tab="mermaid">🔀 Mermaid Kaynağı</button>
+        <button class="r-tab" data-tab="mermaid">🔀 Mimari Şema</button>
       </div>
 
       <div class="right-body">
@@ -202,22 +210,43 @@
           <div id="right-citations-list"></div>
         </div>
 
-        <!-- Tab 3: Raw Copyable Mermaid -->
+        <!-- Tab 3: Visual Graphical Mermaid Diagram + Optional Code Drawer -->
         <div id="panel-mermaid" class="r-panel">
           <div class="code-controls">
-            <span style="font-size:0.76rem;color:var(--right-muted);">GitHub / Markdown uyumlu ham Mermaid kodu:</span>
-            <button id="btn-copy-mermaid-right" class="copy-btn">Mermaid Kopyala</button>
+            <div style="display:flex;gap:0.3rem;">
+              <button id="btn-r-zoom-out" class="copy-btn" title="Uzaklaştır">−</button>
+              <button id="btn-r-zoom-reset" class="copy-btn" title="Sıfırla">Sıfırla</button>
+              <button id="btn-r-zoom-in" class="copy-btn" title="Yakınlaştır">+</button>
+            </div>
+            <div style="display:flex;gap:0.35rem;">
+              <button id="btn-toggle-raw-mermaid" class="copy-btn">&lt;/&gt; Kodu Göster</button>
+              <a href="diagram.html" target="_blank" rel="noopener" class="copy-btn" style="background:#0284c7;color:#fff;border-color:#38bdf8;">↗ Yeni Pencere</a>
+            </div>
           </div>
-          <pre class="code-pre"><code id="raw-mermaid-code"></code></pre>
+
+          <div class="right-diagram-box" id="right-mermaid-viewport">
+            <div id="right-mermaid-target">Şema çiziliyor...</div>
+          </div>
+
+          <div class="raw-mermaid-drawer" id="right-raw-drawer">
+            <div class="code-controls" style="margin-top:0.6rem;">
+              <span style="font-size:0.74rem;color:var(--right-muted);">Ham Mermaid Kaynak Kodu:</span>
+              <button id="btn-copy-mermaid-right" class="copy-btn">Mermaid Kopyala</button>
+            </div>
+            <pre class="code-pre"><code id="raw-mermaid-code"></code></pre>
+          </div>
         </div>
       </div>
     </aside>
 
   </div>
 
-  <!-- Auto-Generated Zero-CORS Portal Data Bundle & Controller -->
+  <!-- Synchronous Script Execution Order: Libraries FIRST, then Data & Portal Controller -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
   <script src="assets/portal_data.js"></script>
   <script src="assets/portal.js"></script>
 </body>
 </html>
-

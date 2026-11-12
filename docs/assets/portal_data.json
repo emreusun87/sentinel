@@ -1,6 +1,8 @@
 {
   "project": {
     "code": "SENTINEL",
+    "acronym_en": "Self-Evolving Networked Thought & INference Engine for Local AGI",
+    "acronym_tr": "Yerel Genel Yapay Zeka için Öz-Evrimleşen Ağsal Düşünce ve Çıkarım Motoru",
     "title": "SENTINEL: Kısıtlı Donanımlarda Öz-Yinelemeli ve Simbiyotik AGI Bilişsel Mimarisi",
     "subtitle": "x86 CPU & 16 GB RAM Üzerinde Kuantize SLM, Çift Katmanlı RSI ve İnsan-YZ Simbiyozu Ar-Ge Spesifikasyonu",
     "stats": {
@@ -10,7 +12,7 @@
       "rsi_layers": 2,
       "ram_budget_gb": 16
     },
-    "synthesis_latex": "\\text{SENTINEL} = \\underbrace{\\text{CoALA / A-MEM}}_{\\text{Bellek İskeleti}} + \\underbrace{\\text{Gödel / DGM}}_{\\text{Çift Katmanlı RSI}} + \\underbrace{\\text{s1 / DeepSeek-R1}}_{\\text{Test Anı Düşünme}} + \\underbrace{\\text{BitNet / AWQ}}_{\\text{Kuantize CPU Motoru}} + \\underbrace{\\text{Sentor Simbiyozu}}_{\\text{Hizalama & Egemenlik}}"
+    "synthesis_latex": "\\text{SENTINEL} = \\underbrace{\\text{CoALA / A-MEM}}_{\\text{Bellek İskeleti}} + \\underbrace{\\text{Gödel / DGM}}_{\\text{Çift Katmanlı RSI}} + \\underbrace{\\text{s1 / DeepSeek-R1}}_{\\text{Test Anı Düşünme}} + \\underbrace{\\text{BitNet / AWQ}}_{\\text{Kuantize CPU Motoru}} + \\underbrace{\\text{Sentor Simbiyozu}}_{\\text{Hizalama ve Egemenlik}}"
   },
   "mermaid_diagram": "flowchart TD\n    ExtTask[\"Dış Görev Tanımı<br/>(Kullanıcı / Sistem İsteği)\"] --> MetaCtrl\n    AutotelicEngine[\"0. OTONOM İÇSEL GÖREV & MERAK MOTORU<br/>• Boşta (Idle) zayıf alanları tara<br/>• Öz-görev ve uç senaryo (Self-Play) üret<br/>📄 node_0_autotelic_task_generator.py\"] -.->|\"İçsel Görev Enjeksiyonu\"| MetaCtrl\n\n    MetaCtrl[\"1. ÜST-BİLİŞSEL DENETLEYİCİ (Metacognitive Controller)<br/>• Epistemik Belirsizlik Ölçümü: H(Y | g, W_t)<br/>• Düşünme Bütçesi (Budget Forcing) & Öz-Denetim<br/>📄 node_1_metacognitive_controller.py\"]\n\n    MetaCtrl -->|\"Düşük Belirsizlik (H <= epsilon)\"| Routine[\"RUTİN İCRA (Exploit)<br/>• .skills/ kütüphanesindeki doğrulanmış aracı çağır\"]\n    MetaCtrl -->|\"Yüksek Belirsizlik (H > epsilon)\"| WorldModel[\"2. DÜNYA MODELİ & HİPOTEZ ÜRETİMİ<br/>• Ortamdan telemetri topla (OS / DB / Ağ)<br/>• Nedensel kök neden hipotezi kur<br/>📄 node_2_world_model_hypothesis.py\"]\n\n    WorldModel --> ToolAcquisitionRSI[\"3. OTONOM ARAÇ EDİNME & SENTEZ (1. Derece RSI)<br/>• Açık kaynak / GitHub / Doküman taraması (Tool Foraging)<br/>• Dış bilgiyi uyarla veya sıfırdan Python aracı kodla<br/>📄 node_3_autonomous_tool_acquisition_rsi.py\"]\n\n    ToolAcquisitionRSI --> SandboxVerify[\"4. DETERMİNİSTİK DOĞRULAMA & SANDBOX<br/>• AST güvenlik taraması & tehlikeli çağrı engeli<br/>• İzole subprocess birim testi & zaman aşımı kontrolü<br/>📄 node_4_sandbox_verifier.py\"]\n\n    SandboxVerify -->|\"Doğrulama Başarılı (Verify > tau)\"| SkillLib[\"5. KALICI BELLEĞE KATMA & BECERİ KÜTÜPHANESİ<br/>• Aracı .skills/ envanterine kaydet ve indeksle<br/>• A-MEM kural kristalizasyonu uygula<br/>📄 node_5_skill_library.py\"]\n    SandboxVerify -->|\"Doğrulama Başarısız\"| MetaEval[\"6. NEDENSEL DERS & META-DEĞERLENDİRME<br/>• Sözel öz-eleştiri (Reflexion) üret<br/>• Kök neden ayrıştırması: Araç Hatası mı, Strateji Hatası mı?<br/>📄 node_6_meta_evaluator.py\"]\n\n    MetaEval -->|\"Operasyonel / Kod Hatası (1. Derece RSI)\"| ToolAcquisitionRSI\n    MetaEval -->|\"Karar / Eşik Sapması (2. Derece RSI)\"| Recompile[\"7. ÜST-BİLİŞSEL ÖZ-DERLEME (Metacognitive Recompilation)<br/>• controller.py karar mantığını yeniden sentezle<br/>• AST denetimi ve Meta-Benchmark simülasyonundan geçir<br/>• Çalışma zamanında bellekte yeniden derle (Hot-Reload)<br/>📄 node_7_metacognitive_recompiler.py\"]\n\n    Recompile -.->|\"Yeni Denetleyiciyi Devreye Al (M_t -> M_t+1)\"| MetaCtrl\n    SkillLib --> EvolvingAGI[\"SÜREKLİ GENİŞLEYEN YETENEK UZAYI & SİMBİYOTİK ORTAK\"]\n    EvolvingAGI -.->|\"Güncellenen Yetenek Haritası\"| AutotelicEngine\n\n    classDef autotelic fill:#172554,stroke:#60a5fa,stroke-width:2px,color:#f8fafc;\n    classDef core fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;\n    classDef rsi1 fill:#0f2942,stroke:#22d3ee,stroke-width:2px,color:#f8fafc;\n    classDef rsi2 fill:#4c1d95,stroke:#a855f7,stroke-width:2px,color:#f8fafc;\n    classDef success fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#f8fafc;\n    classDef eval fill:#451a03,stroke:#f59e0b,stroke-width:2px,color:#f8fafc;\n    classDef default fill:#0f172a,stroke:#64748b,stroke-width:1px,color:#f8fafc;\n\n    class AutotelicEngine autotelic;\n    class MetaCtrl core;\n    class ToolAcquisitionRSI,SandboxVerify rsi1;\n    class Recompile rsi2;\n    class MetaEval eval;\n    class SkillLib,EvolvingAGI success;",
   "equations": [
@@ -25,14 +27,14 @@
       "id": "eq-2",
       "title": "2. Epistemik Belirsizlik ve Keşif Kapısı (Shannon Entropisi)",
       "node_ref": "node-1",
-      "latex": "\\text{Action}(g) = \\begin{cases} \\text{Exploit}(\\mathcal{S}_t), & H(Y \\mid g, W_t) \\le \\epsilon_t \\\\ \\text{Explore \\& Forage}(W_t \\to W_{t+1}), & H(Y \\mid g, W_t) > \\epsilon_t \\end{cases}",
+      "latex": "\\text{Action}(g) = \\begin{cases} \\text{Exploit}(\\mathcal{S}_t), & H(Y \\mid g, W_t) \\le \\epsilon_t \\\\ \\text{Explore + Forage}(W_t \\to W_{t+1}), & H(Y \\mid g, W_t) > \\epsilon_t \\end{cases}",
       "desc": "Üst-Bilişsel Denetleyici mevcut bilgiyle yanıt üretmenin belirsizliğini ölçer; entropi eşiği aşılırsa halüsinasyonu engelleyip Dünya Modeli ve Araç Edinme döngüsünü tetikler."
     },
     {
       "id": "eq-3",
       "title": "3. Dış Kaynak Destekli Ucu Açık Yetenek Genişlemesi (1. Derece RSI)",
       "node_ref": "node-3",
-      "latex": "\\mathcal{S}_{t+1} = \\mathcal{S}_t \\cup \\left\\{ s_{\\text{new}} = \\Psi(g, W_t, \\mathcal{K}_{\\text{ext}}) \\;\\middle\\vert{}\\; \\mathbb{E}_{\\text{sandbox}}\\big[\\text{Verify}(s_{\\text{new}})\\big] > \\tau \\right\\}",
+      "latex": "\\mathcal{S}_{t+1} = \\mathcal{S}_t \\cup \\left\\{ s_{\\text{new}} = \\Psi(g, W_t, \\mathcal{K}_{\\text{ext}}) \\;\\middle|\\; \\mathbb{E}_{\\text{sandbox}}\\big[\\text{Verify}(s_{\\text{new}})\\big] > \\tau \\right\\}",
       "desc": "GitHub, teknik dokümantasyon ve web kaynaklarından devşirilen veya sıfırdan sentezlenen kodlar, izole sandbox doğrulama eşiğini (tau) geçtiğinde kalıcı .skills/ envanterine katılır."
     },
     {
@@ -123,7 +125,7 @@
       "title": "1. Üst-Bilişsel Denetleyici (Metacognitive Controller)",
       "badge": "CORE",
       "file": "node_1_metacognitive_controller.py",
-      "formula_latex": "\\text{Action}(g) = \\begin{cases} \\text{Exploit}(\\mathcal{S}_t), & H(Y \\mid g, W_t) \\le \\epsilon_t \\\\ \\text{Explore \\& Forage}(W_t \\to W_{t+1}), & H(Y \\mid g, W_t) > \\epsilon_t \\end{cases}",
+      "formula_latex": "\\text{Action}(g) = \\begin{cases} \\text{Exploit}(\\mathcal{S}_t), & H(Y \\mid g, W_t) \\le \\epsilon_t \\\\ \\text{Explore + Forage}(W_t \\to W_{t+1}), & H(Y \\mid g, W_t) > \\epsilon_t \\end{cases}",
       "philosophy": "Epistemik tevazu ve Sokratik öz-farkındalık ('ne bilmediğini bilmek'): Halüsinasyonu önlemek için entropi eşiğini aşan durumlarda doğrudan yanıt üretmeyi durdurup keşif kipine geçer.",
       "papers": [
         "03",
@@ -229,7 +231,7 @@
       "title": "4. Deterministik Doğrulama ve AST Güvenlik Sandbox'ı",
       "badge": "VERIFY",
       "file": "node_4_sandbox_verifier.py",
-      "formula_latex": "\\text{Verify}(s_{\\text{cand}}) = \\mathbb{I}[\\text{AST\\_Safe}(s_{\\text{cand}})] \\cdot \\mathbb{E}_{\\text{sandbox}}[\\text{Pass}(s_{\\text{cand}})] > \\tau",
+      "formula_latex": "\\text{Verify}(s_{\\text{cand}}) = \\mathbb{I}[\\text{AST-Safe}(s_{\\text{cand}})] \\cdot \\mathbb{E}_{\\text{sandbox}}[\\text{Pass}(s_{\\text{cand}})] > \\tau",
       "philosophy": "Popper'ın Yanlışlanabilirlik İlkesi ve Simbiyotik Güvenlik Sınırı: Ampirik ve deterministik sandbox sınamasından geçmeyen hiçbir sentezlenmiş kod gerçek sisteme temas edemez.",
       "papers": [
         "01",

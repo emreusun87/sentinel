@@ -1,6 +1,7 @@
 # SENTINEL: Kısıtlı Donanımlarda Öz-Yinelemeli ve Simbiyotik AGI Bilişsel Mimarisi
 
 **Proje Kodu:** SENTINEL  
+**Açılımı:** **S**elf-**E**volving **N**etworked **T**hought & **IN**ference **E**ngine for **L**ocal AGI *(Yerel Genel Yapay Zeka için Öz-Evrimleşen Ağsal Düşünce ve Çıkarım Motoru)*  
 **Hedef Ortam:** Kısıtlı donanım kaynakları (Harici GPU bulunmayan, standart x86 CPU ve 16 GB RAM mimarisi)  
 **Çalışma Prensibi:** Yerel egemen zeka (Sovereign / Air-Gapped opsiyonlu), veri mahremiyeti odaklı, çift katmanlı RSI  
 
@@ -109,7 +110,7 @@ Burada parantez içi terim beklenen epistemik bilgi kazancını (Bayesian Surpri
 ### 2) Epistemik Belirsizlik ve Keşif Kararı (Üst-Bilişsel Kapı)
 Modelin ezbere yanıt vermek yerine ne zaman durup hipotez ve araç sentezine geçeceğini belirleyen Shannon entropisi eşiği:
 
-$$\text{Action}(g) = \begin{cases} \text{Exploit}(\mathcal{S}_t), & H(Y \mid g, W_t) \le \epsilon_t \\ \text{Explore \& Forage}(W_t \to W_{t+1}), & H(Y \mid g, W_t) > \epsilon_t \end{cases}$$
+$$\text{Action}(g) = \begin{cases} \text{Exploit}(\mathcal{S}_t), & H(Y \mid g, W_t) \le \epsilon_t \\ \text{Explore + Forage}(W_t \to W_{t+1}), & H(Y \mid g, W_t) > \epsilon_t \end{cases}$$
 
 ### 3) Dış Kaynak Destekli Yetenek Uzayının Genişlemesi (1. Derece RSI)
 Dış bilgi kaynaklarından ($\mathcal{K}_{\text{ext}}$: GitHub, dokümantasyon, web) devşirilen ve sentezlenen yeni araçların deterministik doğrulama eşiği ($\tau$) sonrasında prosedürel belleğe katılması:

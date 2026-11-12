@@ -45,7 +45,7 @@ NODE_SPECS = [
         "title": "1. Üst-Bilişsel Denetleyici (Metacognitive Controller)",
         "badge": "CORE",
         "file": "node_1_metacognitive_controller.py",
-        "formula_latex": r"\text{Action}(g) = \begin{cases} \text{Exploit}(\mathcal{S}_t), & H(Y \mid g, W_t) \le \epsilon_t \\ \text{Explore \& Forage}(W_t \to W_{t+1}), & H(Y \mid g, W_t) > \epsilon_t \end{cases}",
+        "formula_latex": r"\text{Action}(g) = \begin{cases} \text{Exploit}(\mathcal{S}_t), & H(Y \mid g, W_t) \le \epsilon_t \\ \text{Explore + Forage}(W_t \to W_{t+1}), & H(Y \mid g, W_t) > \epsilon_t \end{cases}",
         "philosophy": "Epistemik tevazu ve Sokratik öz-farkındalık ('ne bilmediğini bilmek'): Halüsinasyonu önlemek için entropi eşiğini aşan durumlarda doğrudan yanıt üretmeyi durdurup keşif kipine geçer.",
         "papers": ["03", "05", "06", "09", "12", "14", "17", "20"],
     },
@@ -81,7 +81,7 @@ NODE_SPECS = [
         "title": "4. Deterministik Doğrulama ve AST Güvenlik Sandbox'ı",
         "badge": "VERIFY",
         "file": "node_4_sandbox_verifier.py",
-        "formula_latex": r"\text{Verify}(s_{\text{cand}}) = \mathbb{I}[\text{AST\_Safe}(s_{\text{cand}})] \cdot \mathbb{E}_{\text{sandbox}}[\text{Pass}(s_{\text{cand}})] > \tau",
+        "formula_latex": r"\text{Verify}(s_{\text{cand}}) = \mathbb{I}[\text{AST-Safe}(s_{\text{cand}})] \cdot \mathbb{E}_{\text{sandbox}}[\text{Pass}(s_{\text{cand}})] > \tau",
         "philosophy": "Popper'ın Yanlışlanabilirlik İlkesi ve Simbiyotik Güvenlik Sınırı: Ampirik ve deterministik sandbox sınamasından geçmeyen hiçbir sentezlenmiş kod gerçek sisteme temas edemez.",
         "papers": ["01", "02", "09", "11", "20"],
     },
@@ -251,6 +251,8 @@ def main():
     portal_payload = {
         "project": {
             "code": "SENTINEL",
+            "acronym_en": "Self-Evolving Networked Thought & INference Engine for Local AGI",
+            "acronym_tr": "Yerel Genel Yapay Zeka için Öz-Evrimleşen Ağsal Düşünce ve Çıkarım Motoru",
             "title": "SENTINEL: Kısıtlı Donanımlarda Öz-Yinelemeli ve Simbiyotik AGI Bilişsel Mimarisi",
             "subtitle": "x86 CPU & 16 GB RAM Üzerinde Kuantize SLM, Çift Katmanlı RSI ve İnsan-YZ Simbiyozu Ar-Ge Spesifikasyonu",
             "stats": {
@@ -260,7 +262,7 @@ def main():
                 "rsi_layers": 2,
                 "ram_budget_gb": 16,
             },
-            "synthesis_latex": r"\text{SENTINEL} = \underbrace{\text{CoALA / A-MEM}}_{\text{Bellek İskeleti}} + \underbrace{\text{Gödel / DGM}}_{\text{Çift Katmanlı RSI}} + \underbrace{\text{s1 / DeepSeek-R1}}_{\text{Test Anı Düşünme}} + \underbrace{\text{BitNet / AWQ}}_{\text{Kuantize CPU Motoru}} + \underbrace{\text{Sentor Simbiyozu}}_{\text{Hizalama & Egemenlik}}",
+            "synthesis_latex": r"\text{SENTINEL} = \underbrace{\text{CoALA / A-MEM}}_{\text{Bellek İskeleti}} + \underbrace{\text{Gödel / DGM}}_{\text{Çift Katmanlı RSI}} + \underbrace{\text{s1 / DeepSeek-R1}}_{\text{Test Anı Düşünme}} + \underbrace{\text{BitNet / AWQ}}_{\text{Kuantize CPU Motoru}} + \underbrace{\text{Sentor Simbiyozu}}_{\text{Hizalama ve Egemenlik}}",
         },
         "mermaid_diagram": mermaid_code,
         "equations": [
@@ -275,14 +277,14 @@ def main():
                 "id": "eq-2",
                 "title": "2. Epistemik Belirsizlik ve Keşif Kapısı (Shannon Entropisi)",
                 "node_ref": "node-1",
-                "latex": r"\text{Action}(g) = \begin{cases} \text{Exploit}(\mathcal{S}_t), & H(Y \mid g, W_t) \le \epsilon_t \\ \text{Explore \& Forage}(W_t \to W_{t+1}), & H(Y \mid g, W_t) > \epsilon_t \end{cases}",
+                "latex": r"\text{Action}(g) = \begin{cases} \text{Exploit}(\mathcal{S}_t), & H(Y \mid g, W_t) \le \epsilon_t \\ \text{Explore + Forage}(W_t \to W_{t+1}), & H(Y \mid g, W_t) > \epsilon_t \end{cases}",
                 "desc": "Üst-Bilişsel Denetleyici mevcut bilgiyle yanıt üretmenin belirsizliğini ölçer; entropi eşiği aşılırsa halüsinasyonu engelleyip Dünya Modeli ve Araç Edinme döngüsünü tetikler."
             },
             {
                 "id": "eq-3",
                 "title": "3. Dış Kaynak Destekli Ucu Açık Yetenek Genişlemesi (1. Derece RSI)",
                 "node_ref": "node-3",
-                "latex": r"\mathcal{S}_{t+1} = \mathcal{S}_t \cup \left\{ s_{\text{new}} = \Psi(g, W_t, \mathcal{K}_{\text{ext}}) \;\middle\vert{}\; \mathbb{E}_{\text{sandbox}}\big[\text{Verify}(s_{\text{new}})\big] > \tau \right\}",
+                "latex": r"\mathcal{S}_{t+1} = \mathcal{S}_t \cup \left\{ s_{\text{new}} = \Psi(g, W_t, \mathcal{K}_{\text{ext}}) \;\middle|\; \mathbb{E}_{\text{sandbox}}\big[\text{Verify}(s_{\text{new}})\big] > \tau \right\}",
                 "desc": "GitHub, teknik dokümantasyon ve web kaynaklarından devşirilen veya sıfırdan sentezlenen kodlar, izole sandbox doğrulama eşiğini (tau) geçtiğinde kalıcı .skills/ envanterine katılır."
             },
             {
