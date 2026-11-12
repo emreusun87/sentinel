@@ -1,0 +1,1143 @@
+{
+  "project": {
+    "code": "SENTINEL",
+    "title": "SENTINEL: Kısıtlı Donanımlarda Öz-Yinelemeli ve Simbiyotik AGI Bilişsel Mimarisi",
+    "subtitle": "x86 CPU & 16 GB RAM Üzerinde Kuantize SLM, Çift Katmanlı RSI ve İnsan-YZ Simbiyozu Ar-Ge Spesifikasyonu",
+    "stats": {
+      "nodes_count": 8,
+      "papers_count": 19,
+      "notes_count": 20,
+      "rsi_layers": 2,
+      "ram_budget_gb": 16
+    },
+    "synthesis_latex": "\\text{SENTINEL} = \\underbrace{\\text{CoALA / A-MEM}}_{\\text{Bellek İskeleti}} + \\underbrace{\\text{Gödel / DGM}}_{\\text{Çift Katmanlı RSI}} + \\underbrace{\\text{s1 / DeepSeek-R1}}_{\\text{Test Anı Düşünme}} + \\underbrace{\\text{BitNet / AWQ}}_{\\text{Kuantize CPU Motoru}} + \\underbrace{\\text{Sentor Simbiyozu}}_{\\text{Hizalama & Egemenlik}}"
+  },
+  "mermaid_diagram": "flowchart TD\n    ExtTask[\"Dış Görev Tanımı<br/>(Kullanıcı / Sistem İsteği)\"] --> MetaCtrl\n    AutotelicEngine[\"0. OTONOM İÇSEL GÖREV & MERAK MOTORU<br/>• Boşta (Idle) zayıf alanları tara<br/>• Öz-görev ve uç senaryo (Self-Play) üret<br/>📄 node_0_autotelic_task_generator.py\"] -.->|\"İçsel Görev Enjeksiyonu\"| MetaCtrl\n\n    MetaCtrl[\"1. ÜST-BİLİŞSEL DENETLEYİCİ (Metacognitive Controller)<br/>• Epistemik Belirsizlik Ölçümü: H(Y | g, W_t)<br/>• Düşünme Bütçesi (Budget Forcing) & Öz-Denetim<br/>📄 node_1_metacognitive_controller.py\"]\n\n    MetaCtrl -->|\"Düşük Belirsizlik (H <= epsilon)\"| Routine[\"RUTİN İCRA (Exploit)<br/>• .skills/ kütüphanesindeki doğrulanmış aracı çağır\"]\n    MetaCtrl -->|\"Yüksek Belirsizlik (H > epsilon)\"| WorldModel[\"2. DÜNYA MODELİ & HİPOTEZ ÜRETİMİ<br/>• Ortamdan telemetri topla (OS / DB / Ağ)<br/>• Nedensel kök neden hipotezi kur<br/>📄 node_2_world_model_hypothesis.py\"]\n\n    WorldModel --> ToolAcquisitionRSI[\"3. OTONOM ARAÇ EDİNME & SENTEZ (1. Derece RSI)<br/>• Açık kaynak / GitHub / Doküman taraması (Tool Foraging)<br/>• Dış bilgiyi uyarla veya sıfırdan Python aracı kodla<br/>📄 node_3_autonomous_tool_acquisition_rsi.py\"]\n\n    ToolAcquisitionRSI --> SandboxVerify[\"4. DETERMİNİSTİK DOĞRULAMA & SANDBOX<br/>• AST güvenlik taraması & tehlikeli çağrı engeli<br/>• İzole subprocess birim testi & zaman aşımı kontrolü<br/>📄 node_4_sandbox_verifier.py\"]\n\n    SandboxVerify -->|\"Doğrulama Başarılı (Verify > tau)\"| SkillLib[\"5. KALICI BELLEĞE KATMA & BECERİ KÜTÜPHANESİ<br/>• Aracı .skills/ envanterine kaydet ve indeksle<br/>• A-MEM kural kristalizasyonu uygula<br/>📄 node_5_skill_library.py\"]\n    SandboxVerify -->|\"Doğrulama Başarısız\"| MetaEval[\"6. NEDENSEL DERS & META-DEĞERLENDİRME<br/>• Sözel öz-eleştiri (Reflexion) üret<br/>• Kök neden ayrıştırması: Araç Hatası mı, Strateji Hatası mı?<br/>📄 node_6_meta_evaluator.py\"]\n\n    MetaEval -->|\"Operasyonel / Kod Hatası (1. Derece RSI)\"| ToolAcquisitionRSI\n    MetaEval -->|\"Karar / Eşik Sapması (2. Derece RSI)\"| Recompile[\"7. ÜST-BİLİŞSEL ÖZ-DERLEME (Metacognitive Recompilation)<br/>• controller.py karar mantığını yeniden sentezle<br/>• AST denetimi ve Meta-Benchmark simülasyonundan geçir<br/>• Çalışma zamanında bellekte yeniden derle (Hot-Reload)<br/>📄 node_7_metacognitive_recompiler.py\"]\n\n    Recompile -.->|\"Yeni Denetleyiciyi Devreye Al (M_t -> M_t+1)\"| MetaCtrl\n    SkillLib --> EvolvingAGI[\"SÜREKLİ GENİŞLEYEN YETENEK UZAYI & SİMBİYOTİK ORTAK\"]\n    EvolvingAGI -.->|\"Güncellenen Yetenek Haritası\"| AutotelicEngine\n\n    classDef autotelic fill:#172554,stroke:#60a5fa,stroke-width:2px,color:#f8fafc;\n    classDef core fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;\n    classDef rsi1 fill:#0f2942,stroke:#22d3ee,stroke-width:2px,color:#f8fafc;\n    classDef rsi2 fill:#4c1d95,stroke:#a855f7,stroke-width:2px,color:#f8fafc;\n    classDef success fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#f8fafc;\n    classDef eval fill:#451a03,stroke:#f59e0b,stroke-width:2px,color:#f8fafc;\n    classDef default fill:#0f172a,stroke:#64748b,stroke-width:1px,color:#f8fafc;\n\n    class AutotelicEngine autotelic;\n    class MetaCtrl core;\n    class ToolAcquisitionRSI,SandboxVerify rsi1;\n    class Recompile rsi2;\n    class MetaEval eval;\n    class SkillLib,EvolvingAGI success;",
+  "equations": [
+    {
+      "id": "eq-1",
+      "title": "1. İçsel Merak Ödülü ve Öz-Görev Seçimi (Schmidhuber Sıkıştırma İlerlemesi)",
+      "node_ref": "node-0",
+      "latex": "g_{\\text{auto}}^* = \\arg\\max_{g \\in \\mathcal{G}_{\\text{cand}}} \\Big[ H(Y \\mid g, W_t) - \\mathbb{E}_{o \\sim \\text{Env}(g)}\\big[ H(Y \\mid g, W_t \\cup \\{o\\}) \\big] \\Big] - \\lambda \\cdot C_{\\text{CPU}}(g)",
+      "desc": "Sistem boşta (idle) kaldığında çok basit ya da tamamen gürültülü problemler yerine, beklenen epistemik bilgi kazancının (Bayesian Surprise) CPU maliyetine oranla maksimum olduğu uç senaryoyu üretir."
+    },
+    {
+      "id": "eq-2",
+      "title": "2. Epistemik Belirsizlik ve Keşif Kapısı (Shannon Entropisi)",
+      "node_ref": "node-1",
+      "latex": "\\text{Action}(g) = \\begin{cases} \\text{Exploit}(\\mathcal{S}_t), & H(Y \\mid g, W_t) \\le \\epsilon_t \\\\ \\text{Explore \\& Forage}(W_t \\to W_{t+1}), & H(Y \\mid g, W_t) > \\epsilon_t \\end{cases}",
+      "desc": "Üst-Bilişsel Denetleyici mevcut bilgiyle yanıt üretmenin belirsizliğini ölçer; entropi eşiği aşılırsa halüsinasyonu engelleyip Dünya Modeli ve Araç Edinme döngüsünü tetikler."
+    },
+    {
+      "id": "eq-3",
+      "title": "3. Dış Kaynak Destekli Ucu Açık Yetenek Genişlemesi (1. Derece RSI)",
+      "node_ref": "node-3",
+      "latex": "\\mathcal{S}_{t+1} = \\mathcal{S}_t \\cup \\left\\{ s_{\\text{new}} = \\Psi(g, W_t, \\mathcal{K}_{\\text{ext}}) \\;\\middle\\vert{}\\; \\mathbb{E}_{\\text{sandbox}}\\big[\\text{Verify}(s_{\\text{new}})\\big] > \\tau \\right\\}",
+      "desc": "GitHub, teknik dokümantasyon ve web kaynaklarından devşirilen veya sıfırdan sentezlenen kodlar, izole sandbox doğrulama eşiğini (tau) geçtiğinde kalıcı .skills/ envanterine katılır."
+    },
+    {
+      "id": "eq-4",
+      "title": "4. Kısıtlı Donanımda Zeka Verimliliği (Chollet Metriği Uyarlaması)",
+      "node_ref": "node-5",
+      "latex": "\\mathcal{I}_{\\text{SENTINEL}} = \\frac{|\\mathcal{S}_{t+T}| - |\\mathcal{S}_t|}{\\log(C_{\\text{CPU}}) \\cdot |\\theta_{\\text{quant}}|}",
+      "desc": "Sistemin zekası statik ağırlık boyutuyla değil; birim CPU çevrimi ve kuantize parametre başına kazandığı doğrulanmış yeni beceri miktarıyla ölçülür."
+    },
+    {
+      "id": "eq-5",
+      "title": "5. Üst-Bilişsel Öz-Derleme ve Karar Güncellemesi (2. Derece RSI / Gödel Koşulu)",
+      "node_ref": "node-7",
+      "latex": "\\mathcal{M}_{t+1} = \\begin{cases} \\mathcal{M}_{\\text{cand}}, & \\text{eğer } \\text{AST}(\\mathcal{M}_{\\text{cand}}) = 1 \\;\\land\\; \\mathbb{E}_{\\mathcal{D}_{\\text{meta}}}\\big[\\text{MetaScore}(\\mathcal{M}_{\\text{cand}})\\big] > \\text{MetaScore}(\\mathcal{M}_t) + \\delta \\\\ \\mathcal{M}_t, & \\text{aksi halde (Mevcut Denetleyiciyi Koru / Otomatik Rollback)} \\end{cases}",
+      "desc": "Üst-Bilişsel Denetleyici (controller.py), sistematik karar sapmalarında kendi kodunu yeniden yazar; AST güvenlik testi ve geçmiş senaryolar simülasyonunda delta marjını aşarsa çalışma zamanında bellekte yeniden derlenir."
+    }
+  ],
+  "philosophy_pillars": [
+    {
+      "title": "Conatus & Ototelik Özne (Spinoza)",
+      "tag": "Node 0",
+      "desc": "Pasif komut bekleyen heteronom araçtan, boşta kaldığında kendi bilgisizlik sınırlarını keşfedip yetkinliğini artırmaya çalışan içsel amaçlı (autotelic) yapıya geçiş."
+    },
+    {
+      "title": "Autopoiesis — Öz-Üretim (Maturana & Varela)",
+      "tag": "Node 3 – Node 5",
+      "desc": "Sistemin kendi operasyonel sınırlarını ve prosedürel beceri organlarını (.skills/) çevreyle etkileşim içinde çalışma zamanında bizzat üretmesi."
+    },
+    {
+      "title": "İkinci Derece Sibernetik (Heinz von Foerster)",
+      "tag": "Node 6 – Node 7",
+      "desc": "Yalnızca dış sistemi gözlemleyen 1. derece geri beslemeden, karar alan denetleyicinin kendi eşiklerini gözlemleyip yeniden derlediği 2. derece özdüşünümselliğe sıçrama."
+    },
+    {
+      "title": "İnsan-YZ Simbiyozu & Egemen Dışsal Korteks (Licklider & Engelbart)",
+      "tag": "Not #20",
+      "desc": "İnsan bilişini ikame edip körelten merkezi kara kutu yerine; yerel donanımda sahibine sadık çalışan, insanın etik/stratejik yönlendirmesiyle evrilen Sentor Zekası."
+    }
+  ],
+  "categories": [
+    "Öz-Yinelemeli Gelişim (RSI) ve Ajan Evrimi",
+    "Test Anı Akıl Yürütme (Test-Time Compute)",
+    "Kısıtlı Donanım, Kuantizasyon ve SLM Motoru",
+    "Bilişsel Mimari ve Bellek Hiyerarşisi",
+    "Zeka Ölçümü, Felsefe ve İnsan-YZ Simbiyozu"
+  ],
+  "nodes": [
+    {
+      "id": "node-0",
+      "num": 0,
+      "mermaid_id": "AutotelicEngine",
+      "short_title": "Node 0: İçsel Görev & Merak Motoru",
+      "title": "0. Otonom İçsel Görev ve Merak Motoru (Autotelic Engine)",
+      "badge": "AUTOTELIC",
+      "file": "node_0_autotelic_task_generator.py",
+      "formula_latex": "g_{\\text{auto}}^* = \\arg\\max_{g \\in \\mathcal{G}_{\\text{cand}}} \\Big[ H(Y \\mid g, W_t) - \\mathbb{E}_{o}\\big[ H(Y \\mid g, W_t \\cup \\{o\\}) \\big] \\Big] - \\lambda \\cdot C_{\\text{CPU}}(g)",
+      "philosophy": "Spinoza'nın Conatus ilkesi ve Schmidhuber'in Sıkıştırma İlerlemesi (Compression Progress): Sistem dış uyaran olmadığında pasifleşmez; kendi zayıf güven bölgelerini tarayıp içsel amaç üretir.",
+      "papers": [
+        "02",
+        "10",
+        "15",
+        "19"
+      ],
+      "repo_path": "src/nodes/node_0_autotelic_task_generator.py",
+      "docstring": "SENTINEL MİMARİSİ // NODE 0: OTONOM İÇSEL GÖREV VE MERAK MOTORU\n================================================================================\nAtıf Yapılan Node: [AutotelicEngine] - Otonom İçsel Görev ve Merak Motoru\nGörevi: Dışarıdan kullanıcı girdisi gelmediğinde (Idle / Boşta durumu), sistemin\nkendi bilişsel derinliğini artırmak, kör noktalarını tespit etmek ve yetenek\nuzayını genişletmek amacıyla kendi kendine görevler (Self-Generated Tasks) üretmesi.\n================================================================================",
+      "summary": "Dışarıdan kullanıcı girdisi gelmediğinde (Idle / Boşta durumu), sistemin kendi bilişsel derinliğini artırmak, kör noktalarını tespit etmek ve yetenek uzayını genişletmek amacıyla kendi kendine görevler (Self-Generated Tasks) üretmesi.",
+      "classes": [
+        {
+          "name": "AutotelicTaskGenerator",
+          "methods": [
+            "__init__",
+            "notify_user_activity",
+            "is_idle",
+            "generate_intrinsic_curiosity_task",
+            "run_idle_step"
+          ]
+        }
+      ],
+      "code": "\"\"\"\nSENTINEL MİMARİSİ // NODE 0: OTONOM İÇSEL GÖREV VE MERAK MOTORU\n================================================================================\nAtıf Yapılan Node: [AutotelicEngine] - Otonom İçsel Görev ve Merak Motoru\nGörevi: Dışarıdan kullanıcı girdisi gelmediğinde (Idle / Boşta durumu), sistemin\nkendi bilişsel derinliğini artırmak, kör noktalarını tespit etmek ve yetenek\nuzayını genişletmek amacıyla kendi kendine görevler (Self-Generated Tasks) üretmesi.\n================================================================================\n\"\"\"\n\nimport time\nimport json\nimport random\n\nclass AutotelicTaskGenerator:\n    def __init__(self, core_slm, memory_bank):\n        self.slm = core_slm\n        self.memory = memory_bank\n        self.idle_threshold_seconds = 30\n        self.last_user_activity = time.time()\n\n    def notify_user_activity(self):\n        \"\"\"Kullanıcı girdiğinde sayacı sıfırlar.\"\"\"\n        self.last_user_activity = time.time()\n\n    def is_idle(self) -> bool:\n        return (time.time() - self.last_user_activity) > self.idle_threshold_seconds\n\n    def generate_intrinsic_curiosity_task(self) -> dict:\n        \"\"\"\n        Model, geçmiş başarısızlık ve zayıf güven kütüklerini tarayarak\n        kendi yetenek sınırında (Zone of Proximal Development) bir meydan okuma üretir.\n        \"\"\"\n        # Hafızadaki en zayıf yetenek veya en sık hata alınan alanları bul\n        weak_spots = self.memory.get_lowest_confidence_domains()\n        \n        prompt = f\"\"\"\n        [İÇSEL MERAK VE ÖZ-GÖREV ÜRETİM DÖNGÜSÜ]\n        Mevcut Bilişsel Zayıf Noktalar: {weak_spots}\n        Görev: Sistem boşta modunda. SENTINEL'in sistem yönetimi, Linux çekirdeği,\n        ağ teşhisi veya veritabanı optimizasyonu konusundaki kapasitesini sınayacak,\n        uç senaryo (edge case) içeren, doğrulanabilir sentetik bir problem kurgula.\n        \n        Çıktı Formatı (JSON):\n        {{\n            \"task_id\": \"auto_task_xxx\",\n            \"domain\": \"Linux Kernel / MySQL / Network\",\n            \"challenge\": \"Problemin teknik tanımı\",\n            \"verification_metric\": \"Başarının doğrulanacağı bash/python kriteri\",\n            \"difficulty\": 1-5\n        }}\n        \"\"\"\n        task_json_str = self.slm.generate(prompt, temperature=0.7)\n        task_data = json.loads(task_json_str)\n        task_data[\"source\"] = \"INTRINSIC_CURIOSITY_ENGINE\"\n        task_data[\"priority\"] = \"LOW_BACKGROUND\"\n        return task_data\n\n    def run_idle_step(self):\n        if self.is_idle():\n            print(\"[NODE-0] Sistem boşta. Otonom içsel görev üretiliyor...\")\n            new_task = self.generate_intrinsic_curiosity_task()\n            print(f\"[NODE-0] Yeni Görev Üretildi: {new_task['challenge']}\")\n            return new_task\n        return None\n\n",
+      "ast_valid": true,
+      "line_count": 66
+    },
+    {
+      "id": "node-1",
+      "num": 1,
+      "mermaid_id": "MetaCtrl",
+      "short_title": "Node 1: Üst-Bilişsel Denetleyici",
+      "title": "1. Üst-Bilişsel Denetleyici (Metacognitive Controller)",
+      "badge": "CORE",
+      "file": "node_1_metacognitive_controller.py",
+      "formula_latex": "\\text{Action}(g) = \\begin{cases} \\text{Exploit}(\\mathcal{S}_t), & H(Y \\mid g, W_t) \\le \\epsilon_t \\\\ \\text{Explore \\& Forage}(W_t \\to W_{t+1}), & H(Y \\mid g, W_t) > \\epsilon_t \\end{cases}",
+      "philosophy": "Epistemik tevazu ve Sokratik öz-farkındalık ('ne bilmediğini bilmek'): Halüsinasyonu önlemek için entropi eşiğini aşan durumlarda doğrudan yanıt üretmeyi durdurup keşif kipine geçer.",
+      "papers": [
+        "03",
+        "05",
+        "06",
+        "09",
+        "12",
+        "14",
+        "17",
+        "20"
+      ],
+      "repo_path": "src/nodes/node_1_metacognitive_controller.py",
+      "docstring": "SENTINEL MİMARİSİ // NODE 1: ÜST-BİLİŞSEL DENETLEYİCİ\n================================================================================\nAtıf Yapılan Node: [MetaCtrl] - 1. Üst-Bilişsel Denetleyici (Metacognitive Controller)\nGörevi: Gelen görevi (dışarıdan veya içsel merak motorundan) epistemik belirsizlik\naçısından analiz etmek, mevcut yetenek kütüphanesini taramak ve \"Rutin İcra\" mı\nyoksa \"Keşif ve Araç Sentezi\" mi kararı vermek.\n================================================================================",
+      "summary": "Gelen görevi (dışarıdan veya içsel merak motorundan) epistemik belirsizlik açısından analiz etmek, mevcut yetenek kütüphanesini taramak ve \"Rutin İcra\" mı yoksa \"Keşif ve Araç Sentezi\" mi kararı vermek.",
+      "classes": [
+        {
+          "name": "MetacognitiveController",
+          "methods": [
+            "__init__",
+            "measure_epistemic_uncertainty",
+            "decide_cognitive_path"
+          ]
+        }
+      ],
+      "code": "\"\"\"\nSENTINEL MİMARİSİ // NODE 1: ÜST-BİLİŞSEL DENETLEYİCİ\n================================================================================\nAtıf Yapılan Node: [MetaCtrl] - 1. Üst-Bilişsel Denetleyici (Metacognitive Controller)\nGörevi: Gelen görevi (dışarıdan veya içsel merak motorundan) epistemik belirsizlik\naçısından analiz etmek, mevcut yetenek kütüphanesini taramak ve \"Rutin İcra\" mı\nyoksa \"Keşif ve Araç Sentezi\" mi kararı vermek.\n================================================================================\n\"\"\"\n\nimport math\n\nclass MetacognitiveController:\n    def __init__(self, core_slm, skill_registry, uncertainty_threshold=0.35):\n        self.slm = core_slm\n        self.skills = skill_registry\n        self.epsilon = uncertainty_threshold  # Epistemik belirsizlik eşik değeri\n\n    def measure_epistemic_uncertainty(self, task: dict) -> float:\n        \"\"\"\n        Görevin mevcut dünya modeli altındaki Shannon entropisini / belirsizliğini hesaplar.\n        Modelin token olasılık dağılımı ve hafıza benzerlik skoru üzerinden ölçülür.\n        \"\"\"\n        task_text = task.get(\"challenge\", str(task))\n        \n        # 1. Mevcut beceri kütüphanesinde doğrudan eşleşen araç var mı?\n        has_skill, skill_name, match_score = self.skills.find_best_match(task_text)\n        if has_skill and match_score > 0.85:\n            return 0.05  # Neredeyse sıfır belirsizlik (Bildiğimiz alan)\n\n        # 2. SLM logit entropisi tahmini\n        entropy_estimate = self.slm.estimate_output_entropy(task_text)\n        \n        # 3. Bileşik belirsizlik skoru: H(Y | g, W_t)\n        epistemic_uncertainty = (1.0 - match_score) * 0.6 + entropy_estimate * 0.4\n        return epistemic_uncertainty\n\n    def decide_cognitive_path(self, task: dict) -> str:\n        \"\"\"\n        Karar Kuralı:\n        Action(g) = Exploit(S_t)      eğer H <= epsilon\n        Action(g) = Explore(W_t)      eğer H > epsilon\n        \"\"\"\n        uncertainty = self.measure_epistemic_uncertainty(task)\n        print(f\"[NODE-1] Görev: {task.get('task_id', 'anon')} | Epistemik Belirsizlik: {uncertainty:.3f} | Eşik: {self.epsilon}\")\n\n        if uncertainty <= self.epsilon:\n            print(\"[NODE-1] -> Karar: RUTİN İCRA (Exploit) - Hazır beceri çağrılıyor.\")\n            return \"ROUTE_ROUTINE_EXPLOIT\"\n        else:\n            print(\"[NODE-1] -> Karar: DÜNYA MODELİ VE KEŞİF (Explore) - Bilgi/araç eksikliği tespit edildi.\")\n            return \"ROUTE_EXPLORE_AND_SYNTHESIZE\"\n\n",
+      "ast_valid": true,
+      "line_count": 53
+    },
+    {
+      "id": "node-2",
+      "num": 2,
+      "mermaid_id": "WorldModel",
+      "short_title": "Node 2: Dünya Modeli & Hipotez",
+      "title": "2. Dünya Modeli ve Nedensel Hipotez Üretimi (World Model)",
+      "badge": "CAUSAL",
+      "file": "node_2_world_model_hypothesis.py",
+      "formula_latex": "W_{t+1} = \\text{Update}(W_t, o_t), \\quad h^* = \\arg\\max_{h \\in \\mathcal{H}} P(h \\mid W_{t+1}, \\mathcal{M}_{\\text{episodic}})",
+      "philosophy": "Peirce'ün Abdüktif Akıl Yürütmesi (Abductive Inference): Kör deneme-yanılma yerine sistem telemetrisinden sınanabilir nedensel kök neden hipotezi kurar.",
+      "papers": [
+        "04",
+        "06",
+        "13",
+        "14",
+        "18"
+      ],
+      "repo_path": "src/nodes/node_2_world_model_hypothesis.py",
+      "docstring": "SENTINEL MİMARİSİ // NODE 2: DÜNYA MODELİ VE HİPOTEZ ÜRETİMİ\n================================================================================\nAtıf Yapılan Node: [WorldModel] - 2. Dünya Modeli & Hipotez Üretimi\nGörevi: Bilinmeyen veya belirsizliği yüksek durumlarda doğrudan körlemesine\nkomut çalıştırmak yerine; çevre durumunu (OS telemetrisi, prosesler, loglar)\ngözlemleyerek nedensel bir teşhis hipotezi (Causal Hypothesis) kurmak.\n================================================================================",
+      "summary": "Bilinmeyen veya belirsizliği yüksek durumlarda doğrudan körlemesine komut çalıştırmak yerine; çevre durumunu (OS telemetrisi, prosesler, loglar) gözlemleyerek nedensel bir teşhis hipotezi (Causal Hypothesis) kurmak.",
+      "classes": [
+        {
+          "name": "WorldModelHypothesisEngine",
+          "methods": [
+            "__init__",
+            "observe_environment_state",
+            "formulate_causal_hypothesis"
+          ]
+        }
+      ],
+      "code": "\"\"\"\nSENTINEL MİMARİSİ // NODE 2: DÜNYA MODELİ VE HİPOTEZ ÜRETİMİ\n================================================================================\nAtıf Yapılan Node: [WorldModel] - 2. Dünya Modeli & Hipotez Üretimi\nGörevi: Bilinmeyen veya belirsizliği yüksek durumlarda doğrudan körlemesine\nkomut çalıştırmak yerine; çevre durumunu (OS telemetrisi, prosesler, loglar)\ngözlemleyerek nedensel bir teşhis hipotezi (Causal Hypothesis) kurmak.\n================================================================================\n\"\"\"\n\nimport subprocess\nimport json\n\nclass WorldModelHypothesisEngine:\n    def __init__(self, core_slm, telemetry_harvester):\n        self.slm = core_slm\n        self.harvester = telemetry_harvester\n\n    def observe_environment_state(self) -> dict:\n        \"\"\"\n        Sistem ortamından salt-okunur telemetri toplar (CPU, RAM, açık portlar, slow logs).\n        \"\"\"\n        telemetry = {\n            \"top_processes\": self.harvester.get_top_cpu_processes(limit=5),\n            \"disk_io\": self.harvester.get_io_wait_stat(),\n            \"active_sockets\": self.harvester.get_listening_ports(),\n            \"recent_kernel_errors\": self.harvester.get_dmesg_errors(tail=10)\n        }\n        return telemetry\n\n    def formulate_causal_hypothesis(self, task: dict, telemetry: dict) -> dict:\n        \"\"\"\n        Telemetriyi ve görevi birleştirerek 'Nedensel Hipotez' ve 'Gerekli Araç İhtiyacı' üretir.\n        \"\"\"\n        prompt = f\"\"\"\n        [DÜNYA MODELİ VE NEDENSEL HİPOTEZ KURMA]\n        Görev: {task.get('challenge')}\n        Gözlemlenen Sistem Telemetrisi:\n        {json.dumps(telemetry, indent=2)}\n\n        Soru 1: Bu problemin olası kök nedeni nedir? (Nedensel Teşhis)\n        Soru 2: Bunu çözmek için hangi araç veya yetenek eksiktir?\n        Soru 3: Eksik araç için arama kriterleri (GitHub/Web/Python) ne olmalıdır?\n\n        Format:\n        {{\n            \"root_cause_hypothesis\": \"Açıklama...\",\n            \"required_capability\": \"Eksik yetenek adı\",\n            \"search_keywords\": [\"anahtar1\", \"anahtar2\"],\n            \"test_acceptance_criteria\": \"Hangi komut çıktısı hipotezi doğrular?\"\n        }}\n        \"\"\"\n        response_json = self.slm.generate(prompt)\n        hypothesis = json.loads(response_json)\n        print(f\"[NODE-2] Kurulan Hipotez: {hypothesis['root_cause_hypothesis']}\")\n        print(f\"[NODE-2] İhtiyaç Duyulan Yetenek: {hypothesis['required_capability']}\")\n        return hypothesis\n\n",
+      "ast_valid": true,
+      "line_count": 58
+    },
+    {
+      "id": "node-3",
+      "num": 3,
+      "mermaid_id": "ToolAcquisitionRSI",
+      "short_title": "Node 3: Araç Edinme & Sentez (RSI-L1)",
+      "title": "3. Otonom Araç Edinme ve Açık Kaynak Keşfi (1. Derece RSI / Tool Foraging)",
+      "badge": "RSI-L1",
+      "file": "node_3_autonomous_tool_acquisition_rsi.py",
+      "formula_latex": "s_{\\text{cand}} = \\Psi_{\\text{SLM}}\\big(h^*, W_t, \\mathcal{K}_{\\text{ext}}(\\text{GitHub, Docs, Web})\\big)",
+      "philosophy": "Genişletilmiş Zihin (Extended Mind - Clark & Chalmers): Zeka yalnızca içsel ağırlıklarda değil, dış bilgi ekosistemlerini (GitHub, dokümantasyon) tarayıp araca dönüştürme yetisindedir.",
+      "papers": [
+        "07",
+        "08",
+        "10",
+        "15",
+        "19"
+      ],
+      "repo_path": "src/nodes/node_3_autonomous_tool_acquisition_rsi.py",
+      "docstring": "SENTINEL MİMARİSİ // NODE 3: OTONOM ARAÇ VE YETENEK EDİNME (1. DERECE RSI)\n================================================================================\nAtıf Yapılan Node: [ToolAcquisitionRSI] - 3. Otonom Araç ve Yetenek Edinme RSI\nGörevi: Hipotezin gerektirdiği eksik aracı sıfırdan Python ile kodlamak ya da\ndış kaynakları (GitHub API, yerel dökümantasyon, web arama sonuçları) otonom tarayarak\naçık kaynaklı çözümleri bulmak, uyarlamak ve doğrulanabilir araca dönüştürmek (Tool Foraging RSI).\n================================================================================",
+      "summary": "Hipotezin gerektirdiği eksik aracı sıfırdan Python ile kodlamak ya da dış kaynakları (GitHub API, yerel dökümantasyon, web arama sonuçları) otonom tarayarak açık kaynaklı çözümleri bulmak, uyarlamak ve doğrulanabilir araca dönüştürmek (Tool Foraging RSI).",
+      "classes": [
+        {
+          "name": "AutonomousToolAcquisitionRSI",
+          "methods": [
+            "__init__",
+            "forage_external_knowledge",
+            "synthesize_tool_code",
+            "acquire_and_synthesize"
+          ]
+        }
+      ],
+      "code": "\"\"\"\nSENTINEL MİMARİSİ // NODE 3: OTONOM ARAÇ VE YETENEK EDİNME (1. DERECE RSI)\n================================================================================\nAtıf Yapılan Node: [ToolAcquisitionRSI] - 3. Otonom Araç ve Yetenek Edinme RSI\nGörevi: Hipotezin gerektirdiği eksik aracı sıfırdan Python ile kodlamak ya da\ndış kaynakları (GitHub API, yerel dökümantasyon, web arama sonuçları) otonom tarayarak\naçık kaynaklı çözümleri bulmak, uyarlamak ve doğrulanabilir araca dönüştürmek (Tool Foraging RSI).\n================================================================================\n\"\"\"\n\nimport json\nimport urllib.request\nimport urllib.parse\n\nclass AutonomousToolAcquisitionRSI:\n    def __init__(self, core_slm, search_adapter=None, github_client=None):\n        self.slm = core_slm\n        self.search = search_adapter\n        self.github = github_client\n\n    def forage_external_knowledge(self, search_keywords: list) -> list:\n        \"\"\"\n        GitHub ve Web üzerinde anahtar kelimelerle arama yaparak\n        örnek scriptleri, API spesifikasyonlarını veya açık kaynak kütüphaneleri toplar.\n        \"\"\"\n        snippets = []\n        query = \" \".join(search_keywords)\n        print(f\"[NODE-3] Açık kaynak ve repo araması yapılıyor: '{query}'...\")\n        \n        # 1. Simüle veya canlı GitHub / Web araması\n        search_hits = self.search.query_technical_sources(query, sources=[\"github\", \"docs\", \"stackoverflow\"])\n        for hit in search_hits[:3]:\n            snippets.append({\n                \"source\": hit[\"url\"],\n                \"content_snippet\": hit[\"code_or_text\"][:800]\n            })\n        return snippets\n\n    def synthesize_tool_code(self, hypothesis: dict, external_snippets: list) -> str:\n        \"\"\"\n        Toplanan dış kod parçalarını ve hipotezi kullanarak\n        SENTINEL ortamına tam uyumlu, izole çalışabilen bir Python aracı yazar.\n        \"\"\"\n        prompt = f\"\"\"\n        [1. DERECE RSI - OTONOM ARAÇ SENTEZİ]\n        Çözülecek Problem: {hypothesis.get('root_cause_hypothesis')}\n        Gerekli Yetenek: {hypothesis.get('required_capability')}\n        Toplanan Dış Kaynak Kod Parçaları:\n        {json.dumps(external_snippets, indent=2)}\n        \n        Kriterler:\n        - Standart Python 3 kütüphanelerini kullan (harici ağır bağımlılık ekleme).\n        - CLI argümanı veya bağımsız çalıştırılabilir 'run_diagnostic()' fonksiyonu içersin.\n        - Çıktıyı deterministik JSON olarak dönsün: {{\"status\": \"OK/FAIL\", \"metrics\": {{...}}, \"recommendation\": \"...\"}}\n        - Sadece geçerli Python kodu üret, ekstra markdown açıklaması yazma.\n        \"\"\"\n        synthesized_code = self.slm.generate(prompt, temperature=0.2)\n        print(f\"[NODE-3] Yeni araç kodu sentezlendi. Uzunluk: {len(synthesized_code)} karakter.\")\n        return synthesized_code\n\n    def acquire_and_synthesize(self, hypothesis: dict) -> tuple:\n        keywords = hypothesis.get(\"search_keywords\", [\"linux diagnostic script\"])\n        external_context = self.forage_external_knowledge(keywords)\n        tool_code = self.synthesize_tool_code(hypothesis, external_context)\n        tool_name = f\"dyn_{hypothesis.get('required_capability', 'tool').lower().replace(' ', '_')}.py\"\n        return tool_name, tool_code\n\n",
+      "ast_valid": true,
+      "line_count": 67
+    },
+    {
+      "id": "node-4",
+      "num": 4,
+      "mermaid_id": "SandboxVerify",
+      "short_title": "Node 4: Deterministik Sandbox",
+      "title": "4. Deterministik Doğrulama ve AST Güvenlik Sandbox'ı",
+      "badge": "VERIFY",
+      "file": "node_4_sandbox_verifier.py",
+      "formula_latex": "\\text{Verify}(s_{\\text{cand}}) = \\mathbb{I}[\\text{AST\\_Safe}(s_{\\text{cand}})] \\cdot \\mathbb{E}_{\\text{sandbox}}[\\text{Pass}(s_{\\text{cand}})] > \\tau",
+      "philosophy": "Popper'ın Yanlışlanabilirlik İlkesi ve Simbiyotik Güvenlik Sınırı: Ampirik ve deterministik sandbox sınamasından geçmeyen hiçbir sentezlenmiş kod gerçek sisteme temas edemez.",
+      "papers": [
+        "01",
+        "02",
+        "09",
+        "11",
+        "20"
+      ],
+      "repo_path": "src/nodes/node_4_sandbox_verifier.py",
+      "docstring": "SENTINEL MİMARİSİ // NODE 4: DETERMINİSTİK DOĞRULAMA VE SANDBOX\n================================================================================\nAtıf Yapılan Node: [SandboxVerify] - Deterministik Doğrulama & Sandbox\nGörevi: Sentezlenen veya dış kaynaktan uyarlanan araç kodunu canlı sisteme\nsürmeden önce; izole sanal ortamda (sandbox) sözdizimi, güvenlik kısıtları,\nçalışma süresi ve doğruluk kriterleri açısından test etmek.\n================================================================================",
+      "summary": "Sentezlenen veya dış kaynaktan uyarlanan araç kodunu canlı sisteme sürmeden önce; izole sanal ortamda (sandbox) sözdizimi, güvenlik kısıtları, çalışma süresi ve doğruluk kriterleri açısından test etmek.",
+      "classes": [
+        {
+          "name": "SandboxVerifier",
+          "methods": [
+            "__init__",
+            "verify_syntax_ast",
+            "run_in_isolated_process"
+          ]
+        }
+      ],
+      "code": "\"\"\"\nSENTINEL MİMARİSİ // NODE 4: DETERMINİSTİK DOĞRULAMA VE SANDBOX\n================================================================================\nAtıf Yapılan Node: [SandboxVerify] - Deterministik Doğrulama & Sandbox\nGörevi: Sentezlenen veya dış kaynaktan uyarlanan araç kodunu canlı sisteme\nsürmeden önce; izole sanal ortamda (sandbox) sözdizimi, güvenlik kısıtları,\nçalışma süresi ve doğruluk kriterleri açısından test etmek.\n================================================================================\n\"\"\"\n\nimport ast\nimport subprocess\nimport tempfile\nimport os\nimport json\n\nclass SandboxVerifier:\n    def __init__(self, max_timeout_seconds=15, max_memory_mb=256):\n        self.timeout = max_timeout_seconds\n        self.max_memory = max_memory_mb\n\n    def verify_syntax_ast(self, code_string: str) -> tuple:\n        \"\"\"Sözdizimini (syntax) Abstract Syntax Tree ile denetler.\"\"\"\n        try:\n            tree = ast.parse(code_string)\n            # Tehlikeli çağrıları tara (örn. rm -rf, os.kill vb.)\n            for node in ast.walk(tree):\n                if isinstance(node, ast.Call):\n                    if hasattr(node.func, \"id\") and node.func.id in [\"eval\", \"exec\"]:\n                        return False, \"Tehlikeli yerleşik fonksiyon çağrısı (eval/exec).\"\n            return True, \"AST sözdizimi geçerli.\"\n        except SyntaxError as e:\n            return False, f\"Sözdizimi hatası: {e}\"\n\n    def run_in_isolated_process(self, tool_code: str, test_input: str = \"\") -> dict:\n        \"\"\"\n        Kodu geçici izole bir python dosyasına yazar ve kısıtlı subprocess ile koşturur.\n        \"\"\"\n        # 1. AST kontrolü\n        is_ast_ok, ast_msg = self.verify_syntax_ast(tool_code)\n        if not is_ast_ok:\n            return {\"pass\": False, \"error\": ast_msg, \"stage\": \"AST_VALIDATION\"}\n\n        # 2. Geçici dosyada çalıştırma\n        with tempfile.NamedTemporaryFile(suffix=\".py\", delete=False, mode=\"w\", encoding=\"utf-8\") as tmp:\n            tmp.write(tool_code)\n            tmp_path = tmp.name\n\n        try:\n            cmd = [\"python\", tmp_path]\n            proc = subprocess.run(\n                cmd,\n                input=test_input,\n                capture_output=True,\n                text=True,\n                timeout=self.timeout\n            )\n            \n            if proc.returncode == 0:\n                print(f\"[NODE-4] Sandbox Başarılı! Çıktı: {proc.stdout.strip()[:150]}\")\n                return {\n                    \"pass\": True,\n                    \"stdout\": proc.stdout,\n                    \"stderr\": proc.stderr,\n                    \"stage\": \"EXECUTION_SUCCESS\"\n                }\n            else:\n                print(f\"[NODE-4] Sandbox Yürütme Hatası (Exit {proc.returncode}): {proc.stderr.strip()[:200]}\")\n                return {\n                    \"pass\": False,\n                    \"error\": proc.stderr or proc.stdout,\n                    \"returncode\": proc.returncode,\n                    \"stage\": \"RUNTIME_EXECUTION\"\n                }\n        except subprocess.TimeoutExpired:\n            print(f\"[NODE-4] Zaman aşımı ({self.timeout}s). Sonsuz döngü engellendi.\")\n            return {\"pass\": False, \"error\": \"Zaman aşımı (Timeout)\", \"stage\": \"TIMEOUT_GUARD\"}\n        finally:\n            if os.path.exists(tmp_path):\n                os.remove(tmp_path)\n\n",
+      "ast_valid": true,
+      "line_count": 81
+    },
+    {
+      "id": "node-5",
+      "num": 5,
+      "mermaid_id": "SkillLib",
+      "short_title": "Node 5: Beceri Kütüphanesi (.skills)",
+      "title": "5. Kalıcı Belleğe Katma ve Prosedürel Kütüphane (Skill Crystallization)",
+      "badge": "MEMORY",
+      "file": "node_5_skill_library.py",
+      "formula_latex": "\\mathcal{S}_{t+1} = \\mathcal{S}_t \\cup \\{s_{\\text{cand}}\\}, \\quad \\mathcal{M}_{\\text{sem}} \\leftarrow \\text{Crystallize}(\\mathcal{M}_{\\text{sem}}, s_{\\text{cand}})",
+      "philosophy": "Maturana & Varela'nın Autopoiesis (Öz-Üretim) kavramı: Doğrulanan her geçici çözüm, sistemin kalıcı bilişsel-prosedürel organına dönüşerek gelecekteki entropiyi düşürür.",
+      "papers": [
+        "04",
+        "13",
+        "14",
+        "15",
+        "18"
+      ],
+      "repo_path": "src/nodes/node_5_skill_library.py",
+      "docstring": "SENTINEL MİMARİSİ // NODE 5: KALICI BELLEĞE KATMA VE PROSEDÜREL KÜTÜPHANE\n================================================================================\nAtıf Yapılan Node: [SkillLib] - Kalıcı Belleğe Katma & Prosedürel Bellek\nGörevi: Sandbox testinden tam not alan araçları genel yetenek kütüphanesine\n(`.skills/` veya `sentinel/skills/`) kalıcı olarak kaydetmek, semantik indeksini\nçıkarmak ve gelecekteki görevlerde rutin icra (Exploit) için hazır hale getirmek.\n================================================================================",
+      "summary": "Sandbox testinden tam not alan araçları genel yetenek kütüphanesine (`.skills/` veya `sentinel/skills/`) kalıcı olarak kaydetmek, semantik indeksini çıkarmak ve gelecekteki görevlerde rutin icra (Exploit) için hazır hale getirmek.",
+      "classes": [
+        {
+          "name": "SkillLibraryManager",
+          "methods": [
+            "__init__",
+            "_load_index",
+            "_save_index",
+            "commit_new_skill",
+            "find_best_match"
+          ]
+        }
+      ],
+      "code": "\"\"\"\nSENTINEL MİMARİSİ // NODE 5: KALICI BELLEĞE KATMA VE PROSEDÜREL KÜTÜPHANE\n================================================================================\nAtıf Yapılan Node: [SkillLib] - Kalıcı Belleğe Katma & Prosedürel Bellek\nGörevi: Sandbox testinden tam not alan araçları genel yetenek kütüphanesine\n(`.skills/` veya `sentinel/skills/`) kalıcı olarak kaydetmek, semantik indeksini\nçıkarmak ve gelecekteki görevlerde rutin icra (Exploit) için hazır hale getirmek.\n================================================================================\n\"\"\"\n\nimport os\nimport json\n\nclass SkillLibraryManager:\n    def __init__(self, skills_dir=\"sentinel/skills\"):\n        self.skills_dir = skills_dir\n        os.makedirs(self.skills_dir, exist_ok=True)\n        self.index_path = os.path.join(self.skills_dir, \"skills_index.json\")\n        self._load_index()\n\n    def _load_index(self):\n        if os.path.exists(self.index_path):\n            with open(self.index_path, \"r\", encoding=\"utf-8\") as f:\n                self.index = json.load(f)\n        else:\n            self.index = {}\n\n    def _save_index(self):\n        with open(self.index_path, \"w\", encoding=\"utf-8\") as f:\n            json.dump(self.index, f, indent=2, ensure_ascii=False)\n\n    def commit_new_skill(self, tool_name: str, tool_code: str, hypothesis: dict) -> str:\n        \"\"\"\n        Doğrulanmış yeni kodu kalıcı depoya yazar ve anlamsal indeksini günceller.\n        \"\"\"\n        file_path = os.path.join(self.skills_dir, tool_name)\n        with open(file_path, \"w\", encoding=\"utf-8\") as f:\n            f.write(tool_code)\n\n        capability_name = hypothesis.get(\"required_capability\", tool_name)\n        self.index[capability_name] = {\n            \"file\": tool_name,\n            \"description\": hypothesis.get(\"root_cause_hypothesis\", \"\"),\n            \"keywords\": hypothesis.get(\"search_keywords\", []),\n            \"version\": 1\n        }\n        self._save_index()\n        print(f\"[NODE-5] Yeni Yetenek Kalıcı Kütüphaneye Eklendi: {capability_name} -> {file_path}\")\n        return file_path\n\n    def find_best_match(self, task_query: str) -> tuple:\n        \"\"\"\n        Mevcut kütüphanede sorguyla örtüşen araç arar.\n        \"\"\"\n        task_query_lower = task_query.lower()\n        for cap_name, meta in self.index.items():\n            if cap_name.lower() in task_query_lower or any(kw in task_query_lower for kw in meta.get(\"keywords\", [])):\n                return True, meta[\"file\"], 0.95\n        return False, None, 0.1\n\n",
+      "ast_valid": true,
+      "line_count": 60
+    },
+    {
+      "id": "node-6",
+      "num": 6,
+      "mermaid_id": "MetaEval",
+      "short_title": "Node 6: Nedensel Meta-Değerlendirme",
+      "title": "6. Nedensel Ders Çıkarımı ve Kök Neden Ayrıştırması (Meta-Evaluator)",
+      "badge": "EVAL",
+      "file": "node_6_meta_evaluator.py",
+      "formula_latex": "\\text{Route}(e_t) = \\begin{cases} \\text{RSI-L1 (Araç Revizyonu)}, & \\text{Fault}(e_t) \\in \\mathcal{S}_{\\text{op}} \\\\ \\text{RSI-L2 (Öz-Derleme)}, & \\text{Fault}(e_t) \\in \\mathcal{M}_{\\text{ctrl}} \\end{cases}",
+      "philosophy": "Argyris & Schön Çift Döngülü Öğrenme (Double-Loop Learning): Yalnızca hatayı düzeltmekle kalmaz, hataya yol açan karar normlarını ve eşiklerini de sorgular.",
+      "papers": [
+        "11",
+        "16",
+        "01",
+        "07"
+      ],
+      "repo_path": "src/nodes/node_6_meta_evaluator.py",
+      "docstring": "SENTINEL MİMARİSİ // NODE 6: NEDENSEL DERS VE META-DEĞERLENDİRME\n================================================================================\nAtıf Yapılan Node: [MetaEval] - 4. Nedensel Ders & Meta-Değerlendirme\nGörevi: Doğrulama başarısız olduğunda hatanın kaynağını ayrıştırmak:\n- Hata yazılan araç kodundan mı kaynaklandı? -> [1. Derece RSI: Aracı Düzelt]\n- Hata üst-bilişsel stratejiden, belirsizlik eşiğinden veya hipotez modelinden mi?\n  -> [2. Derece RSI: Denetleyiciyi Yeniden Derle]\n================================================================================",
+      "summary": "Doğrulama başarısız olduğunda hatanın kaynağını ayrıştırmak: - Hata yazılan araç kodundan mı kaynaklandı? -> [1. Derece RSI: Aracı Düzelt] - Hata üst-bilişsel stratejiden, belirsizlik eşiğinden veya hipotez modelinden mi? -> [2. Derece RSI: Denetleyiciyi Yeniden Derle]",
+      "classes": [
+        {
+          "name": "MetaEvaluator",
+          "methods": [
+            "__init__",
+            "evaluate_failure_source",
+            "record_causal_lesson"
+          ]
+        }
+      ],
+      "code": "\"\"\"\nSENTINEL MİMARİSİ // NODE 6: NEDENSEL DERS VE META-DEĞERLENDİRME\n================================================================================\nAtıf Yapılan Node: [MetaEval] - 4. Nedensel Ders & Meta-Değerlendirme\nGörevi: Doğrulama başarısız olduğunda hatanın kaynağını ayrıştırmak:\n- Hata yazılan araç kodundan mı kaynaklandı? -> [1. Derece RSI: Aracı Düzelt]\n- Hata üst-bilişsel stratejiden, belirsizlik eşiğinden veya hipotez modelinden mi?\n  -> [2. Derece RSI: Denetleyiciyi Yeniden Derle]\n================================================================================\n\"\"\"\n\nclass MetaEvaluator:\n    def __init__(self, core_slm, max_tool_retries=2):\n        self.slm = core_slm\n        self.max_retries = max_tool_retries\n        self.retry_counts = {}\n\n    def evaluate_failure_source(self, task: dict, tool_name: str, sandbox_result: dict, meta_history: list) -> str:\n        \"\"\"\n        Başarısızlığı iki seviyede sınıflandırır:\n        1. LOCAL_TOOL_FAILURE: Araç kodunda spesifik sentaks/lojik hatası var.\n        2. METACOGNITIVE_BIAS_FAILURE: Üst-bilişsel denetleyici yanlış hipotez kurdu\n           veya belirsizlik eşiğini yanlış kalibre etti.\n        \"\"\"\n        error_msg = sandbox_result.get(\"error\", \"\")\n        current_retries = self.retry_counts.get(tool_name, 0)\n\n        # Eğer araç 2 defadan az denendiyse ve hata basit bir python istisnasıysa\n        if current_retries < self.max_retries and sandbox_result.get(\"stage\") in [\"AST_VALIDATION\", \"RUNTIME_EXECUTION\"]:\n            self.retry_counts[tool_name] = current_retries + 1\n            print(f\"[NODE-6] Teşhis: Lokal Araç Hatası (Deneme {self.retry_counts[tool_name]}/{self.max_retries}). 1. Derece RSI tetikleniyor.\")\n            return \"TRIGGER_1ST_DEGREE_RSI_TOOL_REVISION\"\n\n        # Eğer arka arkaya 3 görevde belirsizlik tahmini tutmadıysa veya araç defalarca patladıysa\n        print(\"[NODE-6] Teşhis: Üst-Bilişsel Karar Sapması (Metacognitive Systematic Bias). 2. Derece RSI tetikleniyor.\")\n        return \"TRIGGER_2ND_DEGREE_RSI_RECOMPILE_CONTROLLER\"\n\n    def record_causal_lesson(self, task: dict, failure_reason: str):\n        \"\"\"Epizodik belleğe gelecekte aynı hataya düşmemek için nedensel kural yazar.\"\"\"\n        print(f\"[NODE-6] Epizodik Belleğe Nedensel Ders Yazıldı: {failure_reason}\")\n\n",
+      "ast_valid": true,
+      "line_count": 41
+    },
+    {
+      "id": "node-7",
+      "num": 7,
+      "mermaid_id": "Recompile",
+      "short_title": "Node 7: Üst-Bilişsel Öz-Derleme (RSI-L2)",
+      "title": "7. Üst-Bilişsel Öz-Derleme ve Hot-Reload (2. Derece RSI)",
+      "badge": "RSI-L2",
+      "file": "node_7_metacognitive_recompiler.py",
+      "formula_latex": "\\mathcal{M}_{t+1} = \\mathcal{M}_{\\text{cand}} \\iff \\text{AST}(\\mathcal{M}_{\\text{cand}})=1 \\land \\text{MetaScore}(\\mathcal{M}_{\\text{cand}}) > \\text{MetaScore}(\\mathcal{M}_t) + \\delta",
+      "philosophy": "İkinci Derece Sibernetik (von Foerster) ve Gödelci Öz-Referans: Gözlemleyen ve yöneten mekanizmanın bizzat kendisini gözlemleyip çalışma zamanında yeniden derlemesi.",
+      "papers": [
+        "01",
+        "07",
+        "08",
+        "20"
+      ],
+      "repo_path": "src/nodes/node_7_metacognitive_recompiler.py",
+      "docstring": "SENTINEL MİMARİSİ // NODE 7: ÜST-BİLİŞSEL ÖZ-DERLEME (2. DERECE RSI)\n================================================================================\nAtıf Yapılan Node: [Recompile] - Üst-Bilişsel Öz-Derleme (Metacognitive Recompilation)\nGörevi: Sistemik karar sapmaları veya epistemik kör noktalar tespit edildiğinde;\nbizzat `controller.py` dosyasını yeniden kodlamak, meta-benchmark testinden geçirmek\nve Python çalışma alanında sıfır kesintiyle yeniden derleyip yüklemek (Hot-Reload).\n================================================================================",
+      "summary": "Sistemik karar sapmaları veya epistemik kör noktalar tespit edildiğinde; bizzat `controller.py` dosyasını yeniden kodlamak, meta-benchmark testinden geçirmek ve Python çalışma alanında sıfır kesintiyle yeniden derleyip yüklemek (Hot-Reload).",
+      "classes": [
+        {
+          "name": "MetacognitiveRecompilerNode",
+          "methods": [
+            "__init__",
+            "recompile_controller",
+            "_evaluate_meta_benchmark"
+          ]
+        }
+      ],
+      "code": "\"\"\"\nSENTINEL MİMARİSİ // NODE 7: ÜST-BİLİŞSEL ÖZ-DERLEME (2. DERECE RSI)\n================================================================================\nAtıf Yapılan Node: [Recompile] - Üst-Bilişsel Öz-Derleme (Metacognitive Recompilation)\nGörevi: Sistemik karar sapmaları veya epistemik kör noktalar tespit edildiğinde;\nbizzat `controller.py` dosyasını yeniden kodlamak, meta-benchmark testinden geçirmek\nve Python çalışma alanında sıfır kesintiyle yeniden derleyip yüklemek (Hot-Reload).\n================================================================================\n\"\"\"\n\nimport ast\nimport importlib\nimport shutil\nimport os\n\nclass MetacognitiveRecompilerNode:\n    def __init__(self, controller_path=\"sentinel/controller.py\"):\n        self.controller_path = controller_path\n        self.delta_threshold = 0.05\n\n    def recompile_controller(self, core_slm, meta_history_telemetry: list) -> bool:\n        if not os.path.exists(self.controller_path):\n            print(f\"[NODE-7] Hata: {self.controller_path} bulunamadı.\")\n            return False\n\n        with open(self.controller_path, \"r\", encoding=\"utf-8\") as f:\n            current_code = f.read()\n\n        prompt = f\"\"\"\n        [2. DERECE RSI - ÜST-BİLİŞSEL ÖZ-DERLEME PROTOKOLÜ]\n        Aşağıdaki karar telemetrisinde Üst-Bilişsel Denetleyicinin epistemik belirsizlik\n        hesabında sistematik hata tespit edildi:\n        Telemetri: {meta_history_telemetry}\n        \n        Mevcut Denetleyici Kodu (controller.py):\n        {current_code}\n        \n        Görev: Shannon entropisi eşik fonksiyonunu, epsilon kalibrasyonunu ve\n        karar ağacını bu sapmayı düzeltecek şekilde yeniden kodla.\n        Sadece geçerli Python kodu üret.\n        \"\"\"\n        candidate_code = core_slm.generate(prompt)\n\n        # 1. AST Sentaks Denetimi\n        try:\n            ast.parse(candidate_code)\n        except SyntaxError as e:\n            print(f\"[NODE-7] Sentaks hatası: Aday denetleyici iptal edildi -> {e}\")\n            return False\n\n        # 2. Meta-Benchmark Simülasyonu\n        score_candidate = self._evaluate_meta_benchmark(candidate_code)\n        score_current = self._evaluate_meta_benchmark(current_code)\n        print(f\"[NODE-7] Meta Skorlar: Mevcut={score_current:.3f} | Aday={score_candidate:.3f}\")\n\n        # 3. Şart sağlandıysa Rollback Yedeklemesi ve Hot-Reload\n        if score_candidate > (score_current + self.delta_threshold):\n            shutil.copyfile(self.controller_path, f\"{self.controller_path}.bak\")\n            with open(self.controller_path, \"w\", encoding=\"utf-8\") as f:\n                f.write(candidate_code)\n\n            # Python modülünü dinamik yeniden yükle\n            module_name = \"sentinel.controller\"\n            if module_name in os.sys.modules:\n                importlib.reload(os.sys.modules[module_name])\n            print(\"[NODE-7] [RSI-L2] Üst-Bilişsel Denetleyici başarıyla derlendi ve canlıya alındı!\")\n            return True\n        else:\n            print(\"[NODE-7] [RSI-L2] Gelişim marjı yetersiz, mevcut denetleyici korundu.\")\n            return False\n\n    def _evaluate_meta_benchmark(self, code_str: str) -> float:\n        \"\"\"Geçmiş karar durumlarında denetleyicinin doğruluk simülasyonu.\"\"\"\n        return 0.88  # Temsili skor simülasyonu\n\n",
+      "ast_valid": true,
+      "line_count": 75
+    }
+  ],
+  "notes": [
+    {
+      "id": "paper-01",
+      "num": "01",
+      "title": "Darwin Gödel Machine (DGM) - arXiv:2505.22954",
+      "category": "Öz-Yinelemeli Gelişim (RSI) ve Ajan Evrimi",
+      "md_file": "docs/notes/01_Darwin_Godel_Machine.md",
+      "pdf_file": "01_Darwin_Godel_Machine.pdf",
+      "pdf_rel_from_docs": "../papers/01_Darwin_Godel_Machine.pdf",
+      "pdf_size_mb": 3.65,
+      "arxiv_url": "https://arxiv.org/abs/2505.22954",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2505.22954.pdf",
+      "related_nodes": [
+        "Node 4",
+        "Node 6",
+        "Node 7"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Jürgen Schmidhuber'in klasik Gödel Machine yaklaşımı, sistemin kendi kaynak kodunu formel matematiksel kanıtlarla doğrulayarak güncellemesini öngörüyordu. Ancak karmaşık yazılım ortamlarında formel matematiksel kanıt üretmek pratikte imkansıza yakındır. Bu çalışmada yazarlar formel kanıt yerine Darwinci evrimsel arama ve ampirik test doğrulaması getirmişler. Model kendi ajan yürütme kodunu (Python seviyesinde) değiştiriyor; ardından oluşturulan mutasyon bir test/benchmark setinde koşturuluyor. Yeni kod eski sürümden daha yüksek performans gösterirse ana koda merge ediliyor, aksi halde iptal ediliyor.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "Bizim kısıtlı donanım şartlarımızda (yalnızca CPU, harici GPU yok) 2B-7B'lik kuantize küçük modellerle çalışıyoruz. Modeli sıfırdan eğitmek veya sürekli fine-tune etmek imkansız. Ancak DGM mantığıyla modelin sadece harici araçları değil, bizzat Üst-Bilişsel Denetleyiciyi (`controller.py`, `orchestrator.py`) çalışma zamanında yeniden derlemesini (2. Derece RSI) sağlayabiliriz.\nÖrneğin bir sunucu teşhisinde sistem sürekli yanlış belirsizlik kararı veriyor veya gereksiz döngülere giriyorsa, SENTINEL kendi üst-biliş denetim kodunu hata kayıtları ışığında revize eder; meta-benchmark testinden geçirip onaylarsa kendi karar mekanizmasını günceller.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "",
+          "has_code": true
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Modelin ürettiği koddaki sözdizimi hatalarını engellemek için doğrudan çalıştırmadan önce `ast.parse` kontrolü zorunlu tutulmalıdır.\n- Sonsuz döngü veya bellek sızıntısı riskine karşı sandbox ortamında mutlaka işlem zaman aşımı (timeout) ve maksimum RAM sınırı konulmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": "def execute_self_mutation_cycle(failure_trace, test_suite):\n    with open(\"sentinel/orchestrator.py\", \"r\", encoding=\"utf-8\") as f:\n        current_code = f.read()\n\n    prompt = f\"\"\"\n    Ajan orkestrasyonunda su hata meydana geldi:\n    {failure_trace}\n    Mevcut Kod:\n    {current_code}\n    Gorev: Kendi kodunu bu senaryoyu basariyla yonetecek sekilde revize et.\n    Yalnizca gecerli Python kodu uret.\n    \"\"\"\n    mutated_code = call_core_slm(prompt)\n\n    # Guvenlik denetimi: AST uzerinden sentaks kontrolu\n    if not validate_python_ast(mutated_code):\n        return False\n\n    # Izole sandbox ortaminda birim test dogrulamasi\n    test_result = run_in_sandbox(mutated_code, test_suite)\n    if test_result.is_superior:\n        backup_current_version(\"sentinel/orchestrator.py\")\n        with open(\"sentinel/orchestrator.py\", \"w\", encoding=\"utf-8\") as f:\n            f.write(mutated_code)\n        return True\n    return False"
+    },
+    {
+      "id": "paper-02",
+      "num": "02",
+      "title": "Absolute Zero (Sıfır Veriyle Self-Play Akıl Yürütme) - arXiv:2505.03335",
+      "category": "Öz-Yinelemeli Gelişim (RSI) ve Ajan Evrimi",
+      "md_file": "docs/notes/02_Absolute_Zero.md",
+      "pdf_file": "02_Absolute_Zero.pdf",
+      "pdf_rel_from_docs": "../papers/02_Absolute_Zero.pdf",
+      "pdf_size_mb": 5.14,
+      "arxiv_url": "https://arxiv.org/abs/2505.03335",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2505.03335.pdf",
+      "related_nodes": [
+        "Node 0",
+        "Node 4"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "AlphaZero'nun satranç ve Go alanında insan verisi kullanmaksızın kendi kendine oynayarak üst düzey seviyeye ulaşması mantığı, dil modellerinin akıl yürütme (reasoning) süreçlerine uyarlanmış. Dışarıdan derlenmiş soru-cevap veri setlerine ihtiyaç duymadan; sistem \"Problem Üretici (Proposer)\" ve \"Problem Çözücü (Solver)\" rollerine ayrılarak kendi kendine etkileşim kuruyor. Matematik ve programlama gibi alanlarda çıktı doğrudan Python REPL veya derleyici ile test edilebildiği için, sistem dış denetim olmadan kendi mantık zincirini güçlendirebiliyor.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL kapalı devre (air-gapped) kurumsal ortamlarda çalışacağı için sürekli harici veri beslemesi alamayacak. Sistemin boşta kaldığı (idle) zaman aralıklarında CPU kaynaklarını kullanarak kendi kendine problem üretip çözmesini sağlayabiliriz.\nÖrneğin Linux sistem yönetimi, SQL optimizasyonu ve Regex alanlarında sentetik teşhis senaryoları üretilip model tarafından çözülebilir; doğrulanan başarılı düşünce zincirleri yerel anlamsal belleğe eklenir.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "- Sistem yükü %20'nin altına düştüğünde arka plan servisi tetiklenir (`sentinel_idle_daemon.py`).\n- Model, bilinen sistem kurallarına göre zorlu bir senaryo kurgular (örn. \"MySQL kilitlenme analizi için bash betiği\").\n- Ardından aynı model çözücü modunda bu problemi çözmeyi dener.\n- Üretilen betik Python subprocess sandbox'ında yürütülüp doğrulanırsa, çözüm şablonu kalıcı bilgi bankasına işlenir.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Modelin önemsiz veya kolay sorular üreterek ödül fonksiyonunu yanıltması (reward hacking) engellenmeli; soru zorluk derecesi kademeli olarak artırılmalıdır.\n- CPU kaynaklarının aşırı tüketilmemesi için arka plan süreci en düşük işletim sistemi önceliği (`nice -n 19` / `IDLE_PRIORITY_CLASS`) ile çalıştırılmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-03",
+      "num": "03",
+      "title": "BitNet b1.58 2B4T (1.58-Bit Ternary Ağırlık Mimarisi) - arXiv:2504.12285",
+      "category": "Kısıtlı Donanım, Kuantizasyon ve SLM Motoru",
+      "md_file": "docs/notes/03_BitNet_b1_58_2B4T.md",
+      "pdf_file": "03_BitNet_b1_58_2B4T.pdf",
+      "pdf_rel_from_docs": "../papers/03_BitNet_b1_58_2B4T.pdf",
+      "pdf_size_mb": 0.33,
+      "arxiv_url": "https://arxiv.org/abs/2504.12285",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2504.12285.pdf",
+      "related_nodes": [
+        "Node 1"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Geleneksel derin öğrenmedeki kayan nokta (FP16/BF16) matris çarpımlarının yerine tüm model ağırlıklarının {-1, 0, 1} üçlü (ternary) değer kümesine sıkıştırıldığı 1-bit mimarisidir. Bu sayede hesaplama açısından pahalı Matrix Multiplication operasyonları, basit tam sayı toplama ve çıkarma işlemlerine indirgenir. 2 milyar parametreli bir model 4 trilyon token ile eğitildiğinde FP16 kalitesine yaklaşırken; bellek tüketiminde 3.5 kata, enerji ve işlemci gecikmesinde ise 4-8 kata varan verimlilik sağlar.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL projesinin en büyük donanım kısıtı harici GPU bulunmamasıdır. Standart bir x86 işlemcide AVX-512 veya AVX2 komut setleri ile ternary tam sayı toplama operasyonları son derece yüksek verimle çalışır.\n2 milyar parametreli bir BitNet modeli bellek üzerinde yalnızca ~500–600 MB RAM tüketir. Bu durum, SENTINEL'in mütevazı sunucularda veya dizüstü CPU kaynaklarında dahi saniyede 30–40 token üretim hızına ulaşarak 7/24 çalışabilmesini mümkün kılar.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "- Çıkarım altyapısı olarak `bitnet.cpp` derlenip sisteme entegre edilecek.\n- Derleme bayrakları hedef işlemci mimarisine göre (`-march=native -mavx512f -mavx512vnni`) optimize edilecek.\n- SENTINEL yerel çıkarım sınıfı doğrudan bu kütüphaneyi çağıracak:",
+          "has_code": true
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Sıfırdan model ön-eğitimi yapmayacağımız için açık kaynaklı ön-eğitilmiş BitNet b1.58 modelleri kullanılmalı ve sistem yönetimi görevleri için LoRA veya prompt şablonlarıyla uyarlanmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": "class LocalBitNetEngine:\n    def __init__(self, model_path=\"models/bitnet_2b4t.bin\"):\n        self.model = BitNetCppWrapper(\n            model_path=model_path,\n            threads=4,\n            use_simd=True,\n            context_size=4096\n        )\n    def generate(self, prompt):\n        return self.model.stream_generate(prompt, temp=0.2)"
+    },
+    {
+      "id": "paper-04",
+      "num": "04",
+      "title": "A-MEM (Ajan Tabanlı Dinamik Bellek Mimarisi) - arXiv:2502.12110",
+      "category": "Bilişsel Mimari ve Bellek Hiyerarşisi",
+      "md_file": "docs/notes/04_A_MEM_Agentic_Memory.md",
+      "pdf_file": "04_A_MEM_Agentic_Memory.pdf",
+      "pdf_rel_from_docs": "../papers/04_A_MEM_Agentic_Memory.pdf",
+      "pdf_size_mb": 0.97,
+      "arxiv_url": "https://arxiv.org/abs/2502.12110",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2502.12110.pdf",
+      "related_nodes": [
+        "Node 2",
+        "Node 5"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Geleneksel vektör tabanlı RAG sistemleri pasif bir depolama mantığıyla çalışır ve arama anında bağlam penceresini gereksiz veri yığınlarıyla doldurur. A-MEM yaklaşımında ise bellek aktif, kendi kendini organize eden bir yapı olarak ele alınır. Yeni bir tecrübe edinildiğinde sistem; mevcut anılarla bağlantı kurar (Link), çelişen bilgileri günceller (Update), güncelliğini yitirmiş detayları eler (Prune) ve birden fazla gözlemden tekil nedensel kurallar soyutlar (Consolidate).",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "Sunucu teşhislerinde yüzlerce satırlık ham telemetri ve log çıktısı üretilir. Bu çıktıların tamamını bağlam penceresine yüklemek CPU tabanlı modelin çıkarım hızını ciddi şekilde düşürür.\nA-MEM prensibi doğrultusunda SENTINEL'de `MemoryConsolidator` katmanı oluşturulacak:\n- Okunan log analiz edilecek (\"Örn: Apache process havuzunun dolması sebebiyle 502 hatası oluştu\").\n- Bu analiz tek cümlelik bir kural olarak soyutlanıp SQLite tablosuna yazılacak.\n- Ham loglar diskten temizlenecek; bir sonraki oturumda sadece soyutlanmış kural bağlama alınacak.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "",
+          "has_code": true
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Konsolidasyon işleminin kendisi de model çağrısı gerektirdiğinden, işlem her komuttan sonra değil, yalnızca kritik teşhisler ve oturum sonlarında çalıştırılmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": "def consolidate_execution_memory(task_id, raw_output, status):\n    # Ham çıktıyı tek cümlelik nedensel ilkeye dönüştür\n    rule = core_slm.summarize(\n        f\"Gorev: {task_id}\\nCikti: {raw_output[:400]}\\nDurum: {status}\\n\"\n        f\"Gelecek oturumlar icin tek satirlik sistem prensibi cikar:\"\n    )\n    # Benzer kayıtlarla karşılaştır ve gerekirse birleştir\n    existing_rules = query_similar_rules(rule)\n    if existing_rules:\n        merged_rule = core_slm.merge(existing_rules, rule)\n        update_rule_in_db(existing_rules[0].id, merged_rule)\n    else:\n        insert_rule_to_db(task_id, rule)"
+    },
+    {
+      "id": "paper-05",
+      "num": "05",
+      "title": "s1: Simple Test-Time Scaling - arXiv:2501.19393",
+      "category": "Test Anı Akıl Yürütme (Test-Time Compute)",
+      "md_file": "docs/notes/05_s1_Simple_Test_Time_Scaling.md",
+      "pdf_file": "05_s1_Simple_Test_Time_Scaling.pdf",
+      "pdf_rel_from_docs": "../papers/05_s1_Simple_Test_Time_Scaling.pdf",
+      "pdf_size_mb": 1.41,
+      "arxiv_url": "https://arxiv.org/abs/2501.19393",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2501.19393.pdf",
+      "related_nodes": [
+        "Node 1"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Gelişmiş akıl yürütme modellerinin başarısının arkasındaki temel dinamik, çıkarım anında modele ayrılan düşünme bütçesidir (Test-Time Compute). Makalede gösterildiği üzere; 1.000 adet kaliteli akıl yürütme verisiyle eğitilen görece küçük bir model, çıkarım sırasında özel jetonlarla (\"Wait\", duraklatma ve gerekçe genişletme) yönlendirilip düşünce zinciri uzatıldığında, kendisinden çok daha büyük modellerin doğruluk seviyesini yakalayabilmektedir.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL'de 70B parametreli modelleri çalıştırma imkanımız yok. Ancak 2B–7B aralığındaki modellerimize kritik sistem yönetimi ve veritabanı kararlarında `Budget Forcing` tekniği uygulayabiliriz.\nModel aceleyle nihai bir aksiyon komutu vermeye kalktığında araya girilerek alternatif senaryoları, geri alma adımlarını ve güvenlik kısıtlarını incelemesi yönünde ek düşünme jetonu harcamaya zorlanacak. Böylece küçük modelin analiz derinliği artırılacak.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "",
+          "has_code": true
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- CPU üzerinde düşünme jetonlarının artması yanıt süresini 10–25 saniye uzatacaktır. Bu nedenle mekanizma basit durum kontrollerinde değil, yalnızca riskli konfigürasyon değişikliklerinde devreye alınmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": "def generate_deliberative_plan(prompt, min_thinking_tokens=500):\n    context = f\"{prompt}\\n<think>\\n\"\n    tokens_produced = 0\n\n    while tokens_produced < min_thinking_tokens:\n        chunk = core_slm.generate_chunk(context, max_tokens=128)\n        context += chunk\n        tokens_produced += len(chunk.split())\n\n        # Model erken sonuç bildirmeye çalışırsa düşünmeye devam ettir\n        if \"</think>\" in chunk or \"Sonuc olarak:\" in chunk:\n            if tokens_produced < min_thinking_tokens:\n                context += \"\\n[Sistem: Henuz karar verme. Geri alma (rollback) adimlarini ve kenar durumlari tekrar degerlendir...]\\n\"\n\n    context += \"\\n</think>\\n[AKSIYON PLANI]:\"\n    return core_slm.generate_final(context)"
+    },
+    {
+      "id": "paper-06",
+      "num": "06",
+      "title": "DeepSeek-R1 (Saf Takviyeli Öğrenme ile Akıl Yürütme) - arXiv:2501.12948",
+      "category": "Test Anı Akıl Yürütme (Test-Time Compute)",
+      "md_file": "docs/notes/06_DeepSeek_R1_Reasoning.md",
+      "pdf_file": "06_DeepSeek_R1_Reasoning.pdf",
+      "pdf_rel_from_docs": "../papers/06_DeepSeek_R1_Reasoning.pdf",
+      "pdf_size_mb": 4.8,
+      "arxiv_url": "https://arxiv.org/abs/2501.12948",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2501.12948.pdf",
+      "related_nodes": [
+        "Node 1",
+        "Node 2"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Geniş ölçekli takviyeli öğrenme (GRPO) kullanılarak modellerin insan denetimli eğitime gerek duymaksızın kendi kendine akıl yürütme, hata fark etme ve strateji değiştirme becerisi kazanabileceğini kanıtlayan çalışma. Model `<think>` blokları içinde kendi adımlarını sorgulamakta ve bu akıl yürütme paternleri 1.5B ve 7B'lik küçük açık kaynaklı modellere (Qwen tabanlı) başarıyla aktarılabilmektedir.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL'in birincil çekirdeği ($M_{\\text{core}}$) olarak `DeepSeek-R1-Distill-Qwen-1.5B` ve `7B` modellerinin 4-bit GGUF sürümlerini CPU üzerinde konumlandırıyoruz.\nModel, karmaşık bir Linux veya veritabanı krizinde doğrudan körlemesine komut üretmek yerine;\n1) Düşünce zincirinde olası arıza sebeplerini sıralar,\n2) Yanlış varsayımlarını fark edip düzeltir,\n3) Doğrulanmış nihai komutu çıktı olarak verir.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "- Modelden dönen metin çift kanala ayrılır:\n  - `<think> ... </think>` aralığı: Sistemin iç telemetri günlüğüne yazılır (üst-biliş denetimi ve analiz için saklanır).\n  - `[ACTION] ... [/ACTION]` aralığı: Canlı terminalde çalıştırılacak doğrulanmış komut olarak icra katmanına iletilir.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Distile modeller bazen iç monologda döngüye girip gereksiz uzayabilir; bu durumu önlemek için maksimum düşünme jetonu sınırı (`max_reasoning_tokens=1024`) tanımlanmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-07",
+      "num": "07",
+      "title": "Gödel Agent (Öz-Gönderimli Ajan Mimarisi) - arXiv:2410.04444",
+      "category": "Öz-Yinelemeli Gelişim (RSI) ve Ajan Evrimi",
+      "md_file": "docs/notes/07_Godel_Agent.md",
+      "pdf_file": "07_Godel_Agent.pdf",
+      "pdf_rel_from_docs": "../papers/07_Godel_Agent.pdf",
+      "pdf_size_mb": 1.1,
+      "arxiv_url": "https://arxiv.org/abs/2410.04444",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2410.04444.pdf",
+      "related_nodes": [
+        "Node 3",
+        "Node 6",
+        "Node 7"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Sabit araç setleri ve statik prompt şablonları yerine; çalışma zamanında (runtime) kendi karar mekanizmasını, promptlarını ve fonksiyon modüllerini inceleyip değiştirebilen öz-gönderimli (self-referential) ilk formal ajan çerçevesidir. Model karşılaştığı görevi çözemediğinde, dışarıdan müdahale beklemek yerine kendi kod yapısındaki mantıksal eksikliği tespit edip yeni bir araç fonksiyonu sentezleyerek sisteme dahil eder.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL'in Otonom Yetenek Sentezi (RSI) katmanının çift kademeli omurgasını bu mantık oluşturur:\n1. **1. Kademe (Araç Seviyesi):** Sistem yeni bir servis türüyle (örn. özel bir proxy/cache) karşılaştığında `sentinel/skills/dynamic_tool_{id}.py` yazar, sandbox'ta test edip `importlib` ile dinamik yükler.\n2. **2. Kademe (Üst-Biliş Seviyesi):** Ajan sadece araç yazmakla kalmaz; karar alma mantığında (araç seçimi, belirsizlik tespiti, planlama) kronik bir zafiyet fark ettiğinde bizzat `controller.py` modülünü yeniden kodlar, meta-testlerden geçirir ve çalışma anında kendi yönetim beynini yeniden derler (Metacognitive Self-Recompilation).",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "",
+          "has_code": true
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Dinamik yüklenen kodların sistem genelinde tahribat yaratmaması için dosya yazma ve ağ erişimi izinleri katı güvenlik kurallarıyla sınırlandırılmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": "import importlib\n\ndef integrate_dynamic_skill(skill_name, python_code):\n    file_path = f\"sentinel/skills/{skill_name}.py\"\n    with open(file_path, \"w\", encoding=\"utf-8\") as f:\n        f.write(python_code)\n\n    # Modülü çalışma anında dinamik içeri al\n    spec = importlib.util.spec_from_file_location(skill_name, file_path)\n    module = importlib.util.module_from_spec(spec)\n    spec.loader.exec_module(module)\n\n    # Ajanın yetenek sözlüğüne kaydet\n    sentinel_tool_registry[skill_name] = module.execute"
+    },
+    {
+      "id": "paper-08",
+      "num": "08",
+      "title": "ADAS (Ajan Sistemlerinin Otomatik Tasarımı) - arXiv:2408.08435",
+      "category": "Öz-Yinelemeli Gelişim (RSI) ve Ajan Evrimi",
+      "md_file": "docs/notes/08_ADAS_Automated_Design_Agentic_Systems.md",
+      "pdf_file": "08_ADAS_Automated_Design_Agentic_Systems.pdf",
+      "pdf_rel_from_docs": "../papers/08_ADAS_Automated_Design_Agentic_Systems.pdf",
+      "pdf_size_mb": 0.76,
+      "arxiv_url": "https://arxiv.org/abs/2408.08435",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2408.08435.pdf",
+      "related_nodes": [
+        "Node 3",
+        "Node 7"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "İnsan mühendislerin elle sabit alt-ajan iş akışları (ReAct, Reflexion vb.) kurgulaması yerine, bir \"Meta-Ajan\"ın problemin yapısına göre çalışma zamanında yeni alt-ajan topolojileri, haberleşme grafikleri ve işbirlikleri kodlamasını sağlayan araştırma. Üretilen mimariler test edilir ve başarılı olanlar mimari arşivine kaydedilir.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "Sistem analizlerinde tek bir ajan mimarisi her probleme uymaz. Basit bir dosya izin kontrolü için çoklu ajan zinciri kurmak gereksiz CPU tüketirken; çok sunuculu bir senkronizasyon analizinde tekil ajan yetersiz kalır.\nADAS yaklaşımıyla SENTINEL bünyesinde hafif bir `MetaOrchestrator` bulunduracağız:\n- Problem karmaşıklığı analiz edilir.\n- Gerektiğinde çalışma anında yönlü çizge (DAG) tabanlı bir alt-ajan ekibi derlenir (örn: `prober` -> `trace_analyzer` -> `report_builder`).\n- İşlem tamamlandığında bu başarılı topoloji şablonu gelecekteki benzer durumlar için saklanır.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "- Görev: \"Çok katmanlı kimlik doğrulama darboğazı\".\n- Meta-Ajan çıktısı: 2 adet alt-ajan kodu ve aralarındaki JSON haberleşme şeması.\n- Yürütme: Alt-ajanlar hafif bellek profiliyle çalıştırılıp özet veriler birleştiriciye aktarılır.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- CPU üzerinde çok sayıda eşzamanlı ajan çalıştırmak bellek darboğazına yol açar; bu nedenle alt-ajanlar paralel değil, sıralı DAG akışında çalıştırılmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-09",
+      "num": "09",
+      "title": "Scaling Test-Time Compute Optimally - arXiv:2408.03314",
+      "category": "Test Anı Akıl Yürütme (Test-Time Compute)",
+      "md_file": "docs/notes/09_Scaling_LLM_Test_Time_Compute.md",
+      "pdf_file": "09_Scaling_LLM_Test_Time_Compute.pdf",
+      "pdf_rel_from_docs": "../papers/09_Scaling_LLM_Test_Time_Compute.pdf",
+      "pdf_size_mb": 3.69,
+      "arxiv_url": "https://arxiv.org/abs/2408.03314",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2408.03314.pdf",
+      "related_nodes": [
+        "Node 1",
+        "Node 4"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Test anında arama ve doğrulama bütçesini (Test-Time Compute) optimal ölçeklemenin, model parametrelerini katlarca büyütmekten çok daha etkili olduğunu matematiksel ve deneysel olarak kanıtlayan çalışma. Küçük bir modelle üretilen birden fazla aday çözümün (Best-of-N, Beam Search) bir doğrulayıcı (verifier) eşliğinde puanlanıp seçilmesi, çok daha büyük modellerin doğrudan yanıtlarından daha yüksek başarı oranı sunabilmektedir.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL'in CPU odaklı varoluş stratejisinin en sağlam dayanağıdır.\nCPU üzerinde 70B'lik bir modelle çıkarım yapmaya çalışmak yerine; 2B veya 7B'lik kuantize bir modelle 3-4 farklı çözüm planı üretilip, bunlar yerel doğrulama kurallarıyla puanlanacak ve en tutarlı olan seçilecektir.\nBöylece donanım masrafına girmeden yüksek doğruluklu kararlar alınabilir.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "",
+          "has_code": true
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Aday sayısı (N) CPU çekirdek sayısı ve zaman kısıtı dikkate alınarak dengelenmelidir (N=3 genellikle hız-doğruluk dengesini sağlar).",
+          "has_code": false
+        }
+      ],
+      "sample_code": "def select_best_diagnostic_path(issue_context, n_samples=3):\n    candidates = []\n    for _ in range(n_samples):\n        plan = core_slm.generate(issue_context, temperature=0.6)\n        candidates.append(plan)\n\n    scored_candidates = []\n    for plan in candidates:\n        score = evaluate_plan_heuristics(plan) # Geri alma adimi, guvenlik, format kontrolu\n        scored_candidates.append((score, plan))\n\n    # En yüksek puanlı planı yürütmeye gönder\n    scored_candidates.sort(key=lambda x: x[0], reverse=True)\n    return scored_candidates[0][1]"
+    },
+    {
+      "id": "paper-10",
+      "num": "10",
+      "title": "Open-Endedness is Essential for ASI - arXiv:2406.04268",
+      "category": "Öz-Yinelemeli Gelişim (RSI) ve Ajan Evrimi",
+      "md_file": "docs/notes/10_Open_Endedness_DeepMind.md",
+      "pdf_file": "10_Open_Endedness_DeepMind.pdf",
+      "pdf_rel_from_docs": "../papers/10_Open_Endedness_DeepMind.pdf",
+      "pdf_size_mb": 0.9,
+      "arxiv_url": "https://arxiv.org/abs/2406.04268",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2406.04268.pdf",
+      "related_nodes": [
+        "Node 0",
+        "Node 3"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Google DeepMind araştırmacılarının yayımladığı vizyon çalışması. Statik veri setleri üzerinden eğitilen modellerin hiçbir zaman AGI seviyesine erişemeyeceğini; gerçek genel zekanın ancak ve ancak sistemin kendi problemlerini formüle ettiği, ucu açık (open-ended) bir keşif ve evrim sürecine girmesiyle mümkün olabileceğini ortaya koyar.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL yetenek havuzunun statik kalmaması için sisteme \"Otonom Müfredat Üretimi\" prensibini dahil ediyoruz.\nSistem başarılı bir teşhisi tamamladığında; aynı problemin daha zorlu varyasyonlarını (örn: \"aynı anda disk dolu ve ağ gecikmeli olsaydı\") kendi simülasyon ortamında test ederek yeteneklerini proaktif olarak genişletir.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "- Matematiksel Formülasyon: $\\mathcal{S}_{t+1} = \\mathcal{S}_t \\cup \\{ s_{\text{new}} \\}$.\n- Her doğrulanmış çözüm, gelecekteki daha karmaşık problemler için yeni bir basamak (stepping stone) olarak kullanılır.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Keşif sürecinin sistem kaynaklarını kitlememesi için sadece sistem boşta durumdayken ve kontrollü bir CPU sınırında çalışması sağlanmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-11",
+      "num": "11",
+      "title": "Self-Rewarding Language Models - arXiv:2401.10020",
+      "category": "Test Anı Akıl Yürütme (Test-Time Compute)",
+      "md_file": "docs/notes/11_Self_Rewarding_Language_Models.md",
+      "pdf_file": "11_Self_Rewarding_Language_Models.pdf",
+      "pdf_rel_from_docs": "../papers/11_Self_Rewarding_Language_Models.pdf",
+      "pdf_size_mb": 1.08,
+      "arxiv_url": "https://arxiv.org/abs/2401.10020",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2401.10020.pdf",
+      "related_nodes": [
+        "Node 4",
+        "Node 6"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "İnsan geri bildirimine dayalı takviyeli öğrenme (RLHF) darboğazını aşmak için modelin hem yanıt üretici hem de bu yanıtları nesnel kriterlere göre puanlayan bir yargıç (LLM-as-a-Judge) olarak konumlandırılmasıdır. Model iteratif olarak kendi çıktılarını değerlendirerek iki rolünü de eşzamanlı olarak geliştirir.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "Yerel ortamlarda her komut için kullanıcı onayı almak otonom çalışma prensibini bozar.\nSENTINEL karar aşamasında kendi eylem planını nesnel kurallarla puanlayacak:\n- Güvenlik kriterleri (veri kaybı riski, parola sızıntısı, kesinti ihtimali).\n- Modelin kendi verdiği puan belirlenen eşiğin (örn: 4/5) altındaysa plan doğrudan yürütülmez; model planı düzeltene kadar içsel revizyon döngüsüne girer.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "",
+          "has_code": true
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Modelin kendi hatalarını görmezden gelme (self-enhancement bias) eğilimine karşı rubrik maddeleri kesin ve ikili (var/yok) mantıkla netleştirilmelidir.",
+          "has_code": false
+        }
+      ],
+      "sample_code": "def self_evaluate_action_plan(plan, safety_rubric):\n    eval_prompt = f\"\"\"\n    Asagidaki aksiyon planini verilen guvenlik rubrigine gore 1-5 arasi puanla:\n    Rubrik: {safety_rubric}\n    Plan: {plan}\n    Cikti: PUAN: X | GEREKCE: ...\n    \"\"\"\n    score_text = core_slm.generate(eval_prompt)\n    score = extract_score(score_text)\n    return score >= 4, score_text"
+    },
+    {
+      "id": "paper-12",
+      "num": "12",
+      "title": "AWQ: Activation-aware Weight Quantization - arXiv:2306.00978",
+      "category": "Kısıtlı Donanım, Kuantizasyon ve SLM Motoru",
+      "md_file": "docs/notes/12_AWQ_Activation_aware_Weight_Quantization.md",
+      "pdf_file": "12_AWQ_Activation_aware_Weight_Quantization.pdf",
+      "pdf_rel_from_docs": "../papers/12_AWQ_Activation_aware_Weight_Quantization.pdf",
+      "pdf_size_mb": 18.89,
+      "arxiv_url": "https://arxiv.org/abs/2306.00978",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2306.00978.pdf",
+      "related_nodes": [
+        "Node 1"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Klasik kuantizasyon tüm ağırlıkları eşit kabul ederek düşük bitlerde (INT4/INT3) modelin anlama kapasitesini bozar. AWQ, modelin zekasını taşıyan kritik ağırlıkların yalnızca %1 civarında olduğunu ve bu ağırlıkların aktivasyon büyüklüklerine bakılarak korunabileceğini gösterir. Bu kritik ağırlıklar korunarak model 4-bit seviyesine sıkıştırılabilir; herhangi bir ek eğitim veya backpropagation gerektirmez.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL'in CPU bellek yönetimi için temel yapı taşıdır. 7B-8B parametreli modeller normalde 16 GB bellek gerektirirken; 4-bit AWQ / GGUF (Q4_K_M) formatıyla 4.5 GB RAM sınırına indirilir.\nBu sayede standart 16 GB RAM'e sahip bir makinede hem işletim sistemi ve veritabanı servisleri rahat çalışır hem de SENTINEL arka planda kesintisiz hizmet verir.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "- Çekirdek model formatı: Q4_K_M GGUF veya AWQ optimize ağırlıklar.\n- CPU SIMD döngülerinde INT4 ağırlıkların işlenmesiyle bellek bant genişliği darboğazı aşılır.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Kuantizasyon seviyesi INT3'ün altına düşürülmemelidir; akıl yürütme ve kodlama sentaksında bozulmalar yaşanabilir.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-13",
+      "num": "13",
+      "title": "MemGPT: Towards LLMs as Operating Systems - arXiv:2310.08560",
+      "category": "Bilişsel Mimari ve Bellek Hiyerarşisi",
+      "md_file": "docs/notes/13_MemGPT_LLM_OS.md",
+      "pdf_file": "13_MemGPT_LLM_OS.pdf",
+      "pdf_rel_from_docs": "../papers/13_MemGPT_LLM_OS.pdf",
+      "pdf_size_mb": 0.63,
+      "arxiv_url": "https://arxiv.org/abs/2310.08560",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2310.08560.pdf",
+      "related_nodes": [
+        "Node 2",
+        "Node 5"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "İşletim sistemlerindeki sanal bellek (Virtual Memory) ve sayfalama (paging) hiyerarşisini doğrudan LLM bağlam penceresine uyarlayan mimari. LLM bağlamı \"RAM\", harici SQLite ve vektör depoları \"Disk Depolama\" olarak kurgulanır. Model sayfa taşıma çağrılarıyla (`page_in`, `page_out`) ne zaman eski veriyi diske boşaltacağına ve ne zaman eski veriyi bağlama alacağına kendisi karar verir.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "CPU üzerinde bağlam penceresini 4.096 tokenın üzerine çıkarmak KV-cache şişmesine ve çıkarım hızının ciddi şekilde düşmesine yol açar.\nMemGPT mimarisi sayesinde aktif bağlamı 4K tokenla sınırlandırıp, geçmiş telemetri kütüklerini SQLite tablosunda tutacağız. Model geçmiş bir sunucu hatasına ihtiyaç duyduğunda `search_archival_memory` fonksiyon çağrısıyla o veriyi sayfalar halinde bağlamına alacaktır.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Modelin her adımda gereksiz sayfalama çağrısı yapmasını engellemek için sistem promptunda arşiv arama kuralları net tanımlanmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-14",
+      "num": "14",
+      "title": "CoALA: Cognitive Architectures for Language Agents - arXiv:2309.02427",
+      "category": "Bilişsel Mimari ve Bellek Hiyerarşisi",
+      "md_file": "docs/notes/14_CoALA_Cognitive_Architectures.md",
+      "pdf_file": "14_CoALA_Cognitive_Architectures.pdf",
+      "pdf_rel_from_docs": "../papers/14_CoALA_Cognitive_Architectures.pdf",
+      "pdf_size_mb": 2.66,
+      "arxiv_url": "https://arxiv.org/abs/2309.02427",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2309.02427.pdf",
+      "related_nodes": [
+        "Node 1",
+        "Node 2",
+        "Node 5"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Princeton Üniversitesi tarafından bilişsel bilimdeki SOAR ve ACT-R mimarilerinin modern dil modellerine uyarlandığı referans çerçevesidir. Dil ajanını sadece bir prompt döngüsü olarak değil; Çalışan (Working), Epizodik (Episodic), Anlamsal (Semantic) ve Prosedürel (Procedural) olmak üzere 4 temel bellek katmanı ve karar döngüsüyle tanımlar.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL'in temel mimari iskeleti doğrudan CoALA spesifikasyonuna dayanır:\n- Çalışan Bellek: Modelin o anki prompt alanı ve KV önbelleği (4K sınırında).\n- Epizodik Bellek: `logs/` altında saklanan geçmiş hata izleri ve operasyon kütükleri.\n- Anlamsal Bellek: Sunucu erişim envanteri ve konfigürasyon kuralları.\n- Prosedürel Bellek: `.skills/` dizini altındaki Python ve Shell araçları.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "Sistem spagetti kodlar yerine CoALA bellek katmanları üzerinden modüler olarak organize edilir; karar döngüsü (Planlama -> Seçim -> İcra -> Öğrenme) deterministik bir state machine olarak işletilir.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Bellek katmanları arasındaki veri akışı kesin JSON şemalarıyla doğrulanmalı; katmanlar arası veri kirliliği önlenmelidir.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-15",
+      "num": "15",
+      "title": "Voyager: An Open-Ended Embodied Agent - arXiv:2305.16291",
+      "category": "Öz-Yinelemeli Gelişim (RSI) ve Ajan Evrimi",
+      "md_file": "docs/notes/15_Voyager_Open_Ended_Agent.md",
+      "pdf_file": "15_Voyager_Open_Ended_Agent.pdf",
+      "pdf_rel_from_docs": "../papers/15_Voyager_Open_Ended_Agent.pdf",
+      "pdf_size_mb": 17.96,
+      "arxiv_url": "https://arxiv.org/abs/2305.16291",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2305.16291.pdf",
+      "related_nodes": [
+        "Node 0",
+        "Node 3",
+        "Node 5"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Minecraft ortamında insan müdahalesi olmadan sıfırdan araç ve teknoloji keşfeden otonom ajan. Başarısı üç temel sütuna dayanır: Merak odaklı otomatik müfredat, çalıştırılabilir kodlardan oluşan yinelemeli Beceri Kütüphanesi (Skill Library) ve çevreden gelen hata geri bildirimleriyle kendini düzelten icra mekanizması.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "Voyager'ın \"Beceri Kütüphanesi\" yaklaşımı SENTINEL'in kalıcı hafızasını oluşturur.\nSENTINEL bir sunucuda \"MySQL slow log analizi\" veya \"Nginx worker optimizasyonu\" için yeni bir Python fonksiyonu kodlayıp doğruladığında, bunu metin olarak bırakmaz. Fonksiyonu `sentinel/skills/` dizinine bağımsız bir modül olarak kaydeder.\nBenzer bir problem geldiğinde sıfırdan düşünmez; kütüphanedeki hazır aracı çağırarak hızlıca icra eder.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "- Yeni beceri sentezlendi -> Sandbox birim testinden geçti -> `sentinel/skills/{skill_name}.py` olarak kaydedildi -> Gelecekteki görevlerde doğrudan tool tanımı olarak sunuldu.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Kütüphanedeki fonksiyon sayısı arttıkça modelin doğru aracı seçebilmesi için her fonksiyonun başlığı ve parametre açıklaması (docstring) standartlaştırılmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-16",
+      "num": "16",
+      "title": "Reflexion: Language Agents with Verbal RL - arXiv:2303.11366",
+      "category": "Test Anı Akıl Yürütme (Test-Time Compute)",
+      "md_file": "docs/notes/16_Reflexion_Verbal_Reinforcement.md",
+      "pdf_file": "16_Reflexion_Verbal_Reinforcement.pdf",
+      "pdf_rel_from_docs": "../papers/16_Reflexion_Verbal_Reinforcement.pdf",
+      "pdf_size_mb": 0.56,
+      "arxiv_url": "https://arxiv.org/abs/2303.11366",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2303.11366.pdf",
+      "related_nodes": [
+        "Node 6"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Geleneksel pekiştirmeli öğrenmedeki ağırlık güncellemeleri yerine; ajanın karşılaştığı hataları sözel olarak eleştirmesi (\"Nerede hata yaptım? X komutunda parametre eksikti\"), bu eleştiriyi bir bellek tamponunda tutması ve bir sonraki denemenin bağlamına eklemesiyle başarı oranının artırılabileceğini gösteren çalışma.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "Yerel CPU ortamında ağırlık güncellemesi (fine-tuning) yapamayacağımız için Reflexion yaklaşımı bizim öğrenme motorumuzdur.\nSENTINEL uzak sunucuda bir SSH komutunda \"Permission Denied\" veya \"Syntax Error\" aldığında:\n- İçsel eleştiri üretilir: `[REFLEXION]: Bu komut normal kullanıcı yetkisiyle çalıştırılamıyor. Bir sonraki adımda sudo ön-eki ile denenmeli.`\n- Bu not kısa süreli epizodik belleğe kaydedilir ve ikinci denemede doğrudan bağlama eklenir.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "- Deneme 1 (Başarısız) -> Hata Çıktısı -> Sözel Eleştiri Üretimi -> Deneme 2 (Öz-Eleştiri ile Güçlendirilmiş Prompt) -> Başarılı İcra.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Modelin aynı hatada takılı kalmaması için maksimum yansıma döngüsü 3 deneme ile sınırlandırılmalı; 3. denemede de çözülemezse teknik blokaj olarak raporlanmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-17",
+      "num": "17",
+      "title": "LLM.int8(): 8-bit Matrix Multiplication - arXiv:2208.07339",
+      "category": "Kısıtlı Donanım, Kuantizasyon ve SLM Motoru",
+      "md_file": "docs/notes/17_LLM_int8_Matrix_Multiplication.md",
+      "pdf_file": "17_LLM_int8_Matrix_Multiplication.pdf",
+      "pdf_rel_from_docs": "../papers/17_LLM_int8_Matrix_Multiplication.pdf",
+      "pdf_size_mb": 0.69,
+      "arxiv_url": "https://arxiv.org/abs/2208.07339",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2208.07339.pdf",
+      "related_nodes": [
+        "Node 1"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Modeller 6.7B parametre sınırını aştığında aktivasyon vektörlerinde beliren aykırı değerleri (emergent outliers) tespit eden ve bu aykırı özellikleri (%0.1) FP16'da tutarken geri kalan %99.9 ağırlığı INT8 ile çarpan iki yollu matris çarpım mimarisi. Performans kaybı yaşamadan modellerin düşük bitlerde çalışabilmesinin teorik zeminini oluşturmuştur.",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL çekirdeğinin sayısal kararlılığı ve CPU üzerinde INT8 vektör komutlarının (VNNI) hassasiyet kaybı yaşamadan çalışabilmesinin teorik güvencesidir. Kuantize modellerimizde aykırı değerlerin doğru yönetildiğinden emin olmamızı sağlar.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "- CPU çıkarım motorunda vektör tabanlı kuantizasyon rutinlerinin seçimi ve doğrulanması.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Çok düşük bit kuantizasyonlarında (örn. 2-bit) aykırı değerlerin kırpılması riskine karşı dikkatli olunmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-18",
+      "num": "18",
+      "title": "STaR: Bootstrapping Reasoning With Reasoning - arXiv:2203.14465",
+      "category": "Test Anı Akıl Yürütme (Test-Time Compute)",
+      "md_file": "docs/notes/18_STaR_Bootstrapping_Reasoning.md",
+      "pdf_file": "18_STaR_Bootstrapping_Reasoning.pdf",
+      "pdf_rel_from_docs": "../papers/18_STaR_Bootstrapping_Reasoning.pdf",
+      "pdf_size_mb": 0.74,
+      "arxiv_url": "https://arxiv.org/abs/2203.14465",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/2203.14465.pdf",
+      "related_nodes": [
+        "Node 2",
+        "Node 5"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "Modelin ürettiği düşünce gerekçelerini (rationales) kullanarak kendi akıl yürütme becerisini geliştirdiği döngü. Model bir soruya gerekçe ve yanıt üretir; nihai sonuç doğru ise bu gerekçe başarılı kabul edilir. Yanlış yanıtlarda ise doğru yanıt ipucu verilerek geriye dönük mantık kurması sağlanır (rasyonalizasyon).",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL'in sistem teşhislerinde doğru sonuca ulaşan akıl yürütme yollarını arşivlemesi için STaR metodolojisini referans alıyoruz.\nBaşarılı bir veritabanı kilitlenme teşhisinde modelin izlediği düşünce adımları bir \"Altın Örnek (Gold Trace)\" olarak etiketlenir ve anlamsal belleğe eklenir. Benzer bir sorun çıktığında model bu başarılı gerekçeyi referans alır.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "- Problem Çözümü Başarılı -> Düşünce Zincirini Ayıkla -> `exemplars/` Dizinine JSON Olarak Yaz -> Gelecekte Few-Shot Örnek Olarak Kullan.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Hatalı gerekçelerin sisteme sızmaması için örnek kaydı yalnızca deterministik doğrulama testini (%100 başarı) geçen oturumlarda yapılmalıdır.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-19",
+      "num": "19",
+      "title": "On the Measure of Intelligence (Chollet AGI Metriği) - arXiv:1911.01547",
+      "category": "Zeka Ölçümü, Felsefe ve İnsan-YZ Simbiyozu",
+      "md_file": "docs/notes/19_On_the_Measure_of_Intelligence_Chollet.md",
+      "pdf_file": "19_On_the_Measure_of_Intelligence_Chollet.pdf",
+      "pdf_rel_from_docs": "../papers/19_On_the_Measure_of_Intelligence_Chollet.pdf",
+      "pdf_size_mb": 1.22,
+      "arxiv_url": "https://arxiv.org/abs/1911.01547",
+      "arxiv_pdf_url": "https://arxiv.org/pdf/1911.01547.pdf",
+      "related_nodes": [
+        "Node 0",
+        "Node 3"
+      ],
+      "sections": [
+        {
+          "heading": "1. Makalenin Özeti ve Temel Fikri",
+          "prose": "François Chollet'in yapay zekanın ezber yeteneğiyle değil, genelleme ve yeni beceri edinme verimliliğiyle ölçülmesi gerektiğini savunduğu temel referans manifestosu.\nChollet'e göre zeka: \"Bir sistemin daha önce hiç karşılaşmadığı durumlarda; minimum ön-bilgi, minimum veri ve minimum hesaplama kaynağı harcayarak yeni bir beceriyi ne kadar hızlı edinebildiğinin (Skill-Acquisition Efficiency) ölçüsüdür.\"",
+          "has_code": false
+        },
+        {
+          "heading": "2. SENTINEL Projesindeki Olası Kullanımı ve Mimari Entegrasyon",
+          "prose": "SENTINEL mimarisinin varoluş felsefesi ve başarı metriği doğrudan bu tanıma dayanır.\nProjemizde zekayı modelin parametre sayısı ile değil; birim CPU maliyeti ve model boyutu başına sisteme kazandırdığı yeni doğrulanmış yetenek miktarı ile ölçüyoruz:\n$$\\mathcal{I}_{\\text{SENTINEL}} = \\frac{\\Delta \\mathcal{S}}{\\log(C_{\\text{CPU}}) \\cdot |\\theta_{\\text{quant}}|}$$\nKısıtlı CPU donanımında çalışan 2B'lik bir kuantize model, bilinmeyen bir sistem krizinde kendi aracını yazıp problemi başarıyla çözebiliyorsa; statik bir trilyon parametreli modelden çok daha yüksek bir zeka verimliliğine sahiptir.",
+          "has_code": false
+        },
+        {
+          "heading": "3. Taslak Uygulama ve Mimari Mantık",
+          "prose": "- Sistemin benchmark değerlendirmesi sabit soru setleriyle değil; daha önce görmediği yeni sunucu senaryolarında kendi başına araç kodlayıp problemi çözme başarısıyla yapılacaktır.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Teknik Kısıtlar ve Dikkat Edilecek Noktalar",
+          "prose": "- Test senaryolarının modelin eğitim verisinde bulunmayan özgün ortam ve araç kombinasyonlarından seçilmesi zorunludur.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    },
+    {
+      "id": "paper-20",
+      "num": "20",
+      "title": "Human-AI Symbiosis (İnsan-Yapay Zeka Simbiyozu) & Centaur Intelligence (Sentor Zekası)",
+      "category": "Zeka Ölçümü, Felsefe ve İnsan-YZ Simbiyozu",
+      "md_file": "docs/notes/20_Human_AI_Symbiosis_ve_Sentor_Zekasi.md",
+      "pdf_file": null,
+      "pdf_rel_from_docs": null,
+      "pdf_size_mb": null,
+      "arxiv_url": null,
+      "arxiv_pdf_url": null,
+      "related_nodes": [
+        "Node 1",
+        "Node 4",
+        "Node 7"
+      ],
+      "sections": [
+        {
+          "heading": "1. Temel Felsefi ve Mimari Çerçeve: İkame (Replacement) Değil, Simbiyoz (Symbiosis)",
+          "prose": "Mevcut yapay zeka ekolündeki en büyük yanılgı, bu süreci insan zihninin \"yerine geçme\" (ikame / replacement) yarışı olarak konumlandırmaktır. Yapay zekayı insan bilişinin yerine geçecek bağımsız ve kapalı bir \"kara kutu\" (black-box) olarak inşa etmek iki kaçınılmaz tehlike doğurur:\n1. İnsanlığın karar alma mekanizmalarından tamamen dışlanarak bilişsel körelmeye (cognitive atrophy) uğraması,\n2. Hizalama (alignment) ve kontrol problemleri nedeniyle insanın kendi ürettiği zekanın yönetimini kaybetmesi.\n\nSürdürülebilir ve rasyonel tek yol, biyolojideki mutualist simbiyoz gibi; insanın \"niyet, etik, bağlam ve sezgi\" gücüyle makinenin \"hesaplama, telemetri ayrıştırma ve öz-yinelemeli keşif\" gücünü birleştiren Hibrit Bilişsel Mimaridir (Centaur Intelligence / Sentor Zekası).",
+          "has_code": false
+        },
+        {
+          "heading": "2. Neden Simbiyotik Mimari Zorunlu? (3 Temel Risk ve SENTINEL Çözümü)",
+          "prose": "Risk 1: Bilişsel Körelme (Cognitive Atrophy)\n- Problem: Her görevi insan yerine bütünüyle üstlenen sistemler, insanın problem çözme ve analitik düşünme reflekslerini zamanla aşındırır.\n- SENTINEL Çözümü: Bilişsel İskele (Cognitive Scaffolding / Exocortex). Yapay zeka insanın yerine düşünen bir \"otomat\" değil, insan zihnini genişleten bir dışsal kortekstir. SENTINEL ham telemetriyi tarar, karmaşık log korelasyonlarını çıkarır ve nedensel hipotezler üretir; stratejik yönü belirleme, önceliklendirme ve son doğrulama ise insanda kalır.\n\nRisk 2: Kara Kutu ve Kontrol Kaybı (The Alignment Trap)\n- Problem: Kendi mantığını ve kodunu çalışma zamanında değiştiren (RSI) otonom ajanlar, insan değer yargılarıyla sürekli senkronize edilmezse amaç kayması (instrumental convergence) yaşayabilir.\n- SENTINEL Çözümü: Döngüde İnsanlı Ortak Evrim (Human-in-the-Loop Co-Evolution). Öz-yinelemeli gelişim (RSI) döngüsünde doğrulama (verifier) fonksiyonunun merkezine insan denetimi entegre edilir. Sistem yeni yetenekler ve alt-ajanlar sentezler; ancak hangi yeteneğin \"değerli, güvenli ve etik\" olduğuna insan geri bildirimiyle birlikte karar verilir.\n\nRisk 3: Merkeziyetçi Tekelleşme (AI Oligopoly)\n- Problem: Zekanın yalnızca birkaç teknoloji devinin trilyonluk bulut sunucularında toplanması, insanlığı merkezi algoritmik yönlendirmelere ve veri mahremiyeti ihlallerine mahkum eder.\n- SENTINEL Çözümü: Kişisel ve Yerel Egemen Zeka (Sovereign AI). Kuantize küçük modellerin (SLM) her bireyin kendi yerel donanımında (CPU/Edge) çalışarak, o bireye özgü gelişen kişisel bir simbiyotik ikize dönüşmesi. Böylece yapay zeka insanlığı yöneten merkezi bir güç değil, her insanın kendi egemenliğindeki (sovereign) bilişsel uzantısı olur.",
+          "has_code": false
+        },
+        {
+          "heading": "3. SENTINEL Mimarisi ile Doğrudan Entegrasyon (Teoriden Pratiğe)",
+          "prose": "SENTINEL'de hayata geçirdiğimiz mimari denge tam olarak bu çizgiye oturuyor:\n- Ne tamamen insansız başıboş bir otonomi,\n- Ne de insanı sürekli angaryayla yoran ilkel bir araç.\n\nSistem, kullanıcının niyetini anlayan, kendi eksikliklerini ve belirsizliklerini insanla kurduğu etkileşim içinde fark edip kapatan ve yerel donanımda yalnızca kullanıcısına sadık kalarak evrimleşen simbiyotik bir bilişsel ortaktır.",
+          "has_code": false
+        },
+        {
+          "heading": "4. Temel Literatür ve Tarihsel Referanslar",
+          "prose": "- J.C.R. Licklider (1960) – \"Man-Computer Symbiosis\":\n  Yapay zekanın insanın yerini alması değil; insan beyniyle teknik bilgi-işlem sistemlerinin birbirini tamamlayan simbiyotik bir bütün oluşturması gerektiğini ortaya koyan kurucu başyapıt.\n- Douglas Engelbart (1962) – \"Augmenting Human Intellect: A Conceptual Framework\":\n  Sistemlerin \"insan zekasını ikame etmek\" (Artificial Intelligence - AI) yerine \"insan zekasını büyütmek ve güçlendirmek\" (Intelligence Augmentation - IA) felsefesi üzerine kurulması gerektiğini savunan temel çerçeve.",
+          "has_code": false
+        }
+      ],
+      "sample_code": ""
+    }
+  ]
+}

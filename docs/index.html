@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SENTINEL — Bilişsel AGI Mimarisi & Literatür Spesifikasyonu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- KaTeX (Mathematical Equations) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+
+  <!-- Highlight.js (Python Syntax Highlighting) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+
+  <!-- Mermaid v10 (Interactive Cognitive Flowchart) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+
+  <!-- Portal Styles -->
+  <link rel="stylesheet" href="assets/portal.css" />
+</head>
+<body>
+  <div class="redoc-shell">
+
+    <!-- ====================================================================
+         1. SOL PANEL: REDOC KATEGORİ AĞACI & ANLIK FİLTRE
+         ==================================================================== -->
+    <aside class="left-pane">
+      <div class="brand-box">
+        <div class="brand-top">
+          <div class="brand-logo">
+            <span class="brand-dot"></span>
+            <span>SENTINEL // SPEC</span>
+          </div>
+          <button id="btn-theme-toggle" class="theme-btn" title="Tema Değiştir">☀️ Açık</button>
+        </div>
+        <div class="brand-sub">
+          Kısıtlı Donanımda (CPU / 16GB) Çift Katmanlı RSI &amp; Simbiyotik AGI Mimarisi
+        </div>
+      </div>
+
+      <div class="search-box">
+        <div class="search-input-wrap">
+          <input
+            type="text"
+            id="sidebar-search"
+            class="search-input"
+            placeholder="Düğüm, makale veya kavram ara..."
+            autocomplete="off"
+          />
+          <span class="search-kbd">/</span>
+        </div>
+      </div>
+
+      <nav id="nav-tree" class="nav-tree"></nav>
+    </aside>
+
+    <!-- ====================================================================
+         2. ORTA PANEL: MİMARİ DOKÜMANTASYON, İNTERAKTİF MERMAID, FORMÜL & NOTLAR
+         ==================================================================== -->
+    <main class="center-pane">
+      <header class="hero-header" id="sec-overview">
+        <div class="hero-badges">
+          <span class="hero-badge">x86 CPU-Bound • Harici GPU Yok</span>
+          <span class="hero-badge">1.58-bit BitNet / 4-bit AWQ</span>
+          <span class="hero-badge">1. &amp; 2. Derece RSI</span>
+          <span class="hero-badge">Sovereign &amp; Symbiotic AI</span>
+        </div>
+        <h1 class="hero-title">SENTINEL: Kısıtlı Donanımlarda Öz-Yinelemeli ve Simbiyotik AGI Bilişsel Mimarisi</h1>
+        <p class="hero-subtitle">
+          Kuantize küçük dil modellerini (2B–7B SLM) statik bir sohbet botu olmaktan çıkarıp; içsel merak motoru, açık kaynak araç keşfi, deterministik sandbox ve çalışma zamanında üst-bilişsel öz-derleme ile ucu açık (open-ended) bir bilişsel ortağa dönüştüren Ar-Ge spesifikasyonu ve literatür inceleme portalı.
+        </p>
+
+        <div class="stats-strip">
+          <div class="stat-card">
+            <div class="stat-val">8 Düğüm</div>
+            <div class="stat-lbl">AST Doğrulanmış Python Modülü</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">Çift RSI</div>
+            <div class="stat-lbl">Araç Sentezi + Öz-Derleme</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">19 PDF</div>
+            <div class="stat-lbl">Yerel Akademik Makale Arşivi</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">20 Not</div>
+            <div class="stat-lbl">Mühendislik &amp; Felsefe Analizi</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Problem & Hipotez -->
+      <section class="doc-section prose">
+        <div class="section-eyebrow">01 // Çıkış Noktası ve Mimari Hipotez</div>
+        <h2 class="section-h2">Neden Kısıtlı Donanımda Bilişsel Mimari?</h2>
+        <p>
+          Trilyon parametreli bulut modellerine dayalı mevcut paradigma; kurumsal veri mahremiyeti ihlalleri, eğitim dağılımı dışındaki (out-of-distribution) problemlerde yaşanan halüsinasyonlar ve dış komut gelmedikçe pasif kalan araçsal tekdüzelik nedeniyle gerçek bir otonom sistem mühendisliği sunamamaktadır.
+        </p>
+        <div class="hypothesis-callout">
+          <strong>Temel Mimari Hipotez:</strong> Genel Yapay Zeka (AGI), milyarlarca parametrenin statik ağırlıklarında değil; kısıtlı ve kuantize bir çekirdeğin (<em>M<sub>core</sub></em>), hem dış görevlerde hem de kendi ürettiği içsel merak görevlerinde epistemik belirsizliğini ölçebildiği, eksik araçları açık kaynaklardan keşfedip çalışma zamanında kodlayabildiği ve gerektiğinde bizzat kendi üst-bilişsel karar kodunu (<code>controller.py</code>) yeniden derleyebildiği bilişsel bir mimariden doğar.
+        </div>
+        <div class="math-display" id="synthesis-math"></div>
+      </section>
+
+      <!-- İnteraktif Mermaid Bilişsel Akış Şeması -->
+      <section class="doc-section" id="sec-diagram">
+        <div class="section-eyebrow">02 // Bilişsel Akış ve Çift Katmanlı RSI Topolojisi</div>
+        <h2 class="section-h2">İnteraktif SENTINEL Bilişsel Karar ve Öz-Derleme Döngüsü</h2>
+        <p style="font-size:0.88rem;color:var(--center-muted);margin-bottom:0.75rem;">
+          Diyagram üzerindeki herhangi bir bilişsel düğüme (<strong>Node 0 – Node 7</strong>) tıkladığınızda ilgili mimari spesifikasyona odaklanır ve sağdaki Redoc kod paneline o düğümün Python modülü ile akademik atıflarını yükler.
+        </p>
+
+        <div class="mermaid-card">
+          <div class="mermaid-toolbar">
+            <div class="mermaid-hint">
+              <span>🖱️ Düğümlere tıklayarak Python koduna ve makale atıflarına geçiş yapabilirsiniz</span>
+            </div>
+            <div class="mermaid-actions">
+              <button id="btn-zoom-out" class="m-btn" title="Uzaklaştır">−</button>
+              <button id="btn-zoom-reset" class="m-btn" title="Sıfırla">100%</button>
+              <button id="btn-zoom-in" class="m-btn" title="Yakınlaştır">+</button>
+              <button id="btn-copy-mermaid-top" class="m-btn">Mermaid Kopyala</button>
+            </div>
+          </div>
+          <div class="mermaid-viewport">
+            <div id="mermaid-render-target">Yükleniyor...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Matematiksel Çerçeve -->
+      <section class="doc-section" id="sec-math">
+        <div class="section-eyebrow">03 // Formel Modelleme</div>
+        <h2 class="section-h2">Matematiksel Çerçeve ve 5 Temel Yönetici Denklem</h2>
+        <div id="equations-container"></div>
+      </section>
+
+      <!-- Felsefi ve Sibernetik Çerçeve -->
+      <section class="doc-section" id="sec-philosophy">
+        <div class="section-eyebrow">04 // Kuramsal Zemin</div>
+        <h2 class="section-h2">Felsefi, Sibernetik ve Simbiyotik Sütunlar</h2>
+        <div id="philosophy-container" class="phil-grid"></div>
+      </section>
+
+      <!-- Bilişsel Düğümler (Node 0 - Node 7) -->
+      <section class="doc-section" id="sec-nodes">
+        <div class="section-eyebrow">05 // Referans Modül Spesifikasyonları</div>
+        <h2 class="section-h2">SENTINEL Bilişsel Düğümleri (Node 0 – Node 7)</h2>
+        <div id="nodes-container"></div>
+      </section>
+
+      <!-- 20 Akademik Makale ve Çalışma Notu -->
+      <section class="doc-section" id="sec-literature">
+        <div class="section-eyebrow">06 // Akademik Literatür ve Mühendislik Analizleri</div>
+        <h2 class="section-h2">Atıf Yapılan Makaleler ve Ar-Ge Çalışma Notları (#01 – #20)</h2>
+        <div id="notes-container"></div>
+      </section>
+    </main>
+
+    <!-- ====================================================================
+         3. SAĞ PANEL: REDOC SENKRONİZE KOYU KOD & ATIF PANELİ
+         ==================================================================== -->
+    <aside class="right-pane">
+      <div class="right-top-bar">
+        <div id="right-ctx-type" class="right-context-label">AKTİF MİMARİ DÜĞÜM</div>
+        <div id="right-ctx-title" class="right-context-title">1. Üst-Bilişsel Denetleyici</div>
+      </div>
+
+      <div class="right-tabs">
+        <button class="r-tab active" data-tab="code">🐍 Python Kodu</button>
+        <button class="r-tab" data-tab="citations">📚 Atıflar &amp; PDF <span id="tab-cite-count"></span></button>
+        <button class="r-tab" data-tab="mermaid">🔀 Mermaid Kaynağı</button>
+      </div>
+
+      <div class="right-body">
+        <!-- Tab 1: Python Code -->
+        <div id="panel-code" class="r-panel active">
+          <div class="code-controls">
+            <select id="right-node-selector" class="node-select" aria-label="Düğüm Kodu Seç"></select>
+            <button id="btn-copy-code" class="copy-btn">Kodu Kopyala</button>
+          </div>
+          <div class="code-meta-bar">
+            <span id="code-filepath">src/nodes/node_1_metacognitive_controller.py</span>
+            <span id="code-status" class="ast-ok">✓ AST Doğrulandı</span>
+          </div>
+          <pre class="code-pre"><code id="right-code-block" class="language-python"></code></pre>
+        </div>
+
+        <!-- Tab 2: Cited Papers & PDF Cards -->
+        <div id="panel-citations" class="r-panel">
+          <p style="font-size:0.76rem;color:var(--right-muted);margin-bottom:0.75rem;">
+            Seçili mimari katmanın dayandığı akademik çalışmalar, yerel PDF kopyaları ve çalışma notu bağlantıları:
+          </p>
+          <div id="right-citations-list"></div>
+        </div>
+
+        <!-- Tab 3: Raw Copyable Mermaid -->
+        <div id="panel-mermaid" class="r-panel">
+          <div class="code-controls">
+            <span style="font-size:0.76rem;color:var(--right-muted);">GitHub / Markdown uyumlu ham Mermaid kodu:</span>
+            <button id="btn-copy-mermaid-right" class="copy-btn">Mermaid Kopyala</button>
+          </div>
+          <pre class="code-pre"><code id="raw-mermaid-code"></code></pre>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Auto-Generated Zero-CORS Portal Data Bundle & Controller -->
+  <script src="assets/portal_data.js"></script>
+  <script src="assets/portal.js"></script>
+</body>
+</html>
+
